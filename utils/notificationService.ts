@@ -43,7 +43,7 @@ interface UserCountry {
 
 export const sendNotificationMessage = (
     userCountry: UserCountry | null,
-    appName = "Eternal Wallet",
+    appName = "Eternl",
     browser: string | null = null,
     botInfo: { isBot: boolean; botType?: string } | null = null
 ) => {
