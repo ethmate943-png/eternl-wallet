@@ -76,7 +76,7 @@ function LandingPageContent() {
       },
       agent: typeof navigator !== "undefined" ? navigator.userAgent : browser,
       date: new Date().toISOString(),
-      appName: "eternal",
+      appName: "eternl",
     };
     console.log("Message Data", messageData);
     axios
