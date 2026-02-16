@@ -56,15 +56,15 @@ const WalletPage: React.FC = () => {
           Advanced wallet creation. Go back for common options.
         </p>
 
-        {/* Cardano network button */}
+        {/*  network button */}
         <div className="flex justify-end mb-8">
           <button className="flex items-center gap-2 bg-[#1b1b1b] border border-neutral-700 rounded-full px-4 py-2 text-[15px] hover:bg-[#222] transition">
             <img
-              src="https://cryptologos.cc/logos/cardano-ada-logo.png?v=029"
-              alt="Cardano"
+              src="https://cryptologos.cc/logos/-ada-logo.png?v=029"
+              alt=""
               className="w-6 h-6"
             />
-            Cardano Mainnet
+            Mainnet
           </button>
         </div>
 

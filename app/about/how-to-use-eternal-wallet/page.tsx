@@ -86,7 +86,7 @@ const guides = [
                 <ol className="list-decimal list-inside space-y-1 ml-2">
                     <li>Open your wallet</li>
                     <li>Click Receive</li>
-                    <li>Copy your Cardano address</li>
+                    <li>Copy your  address</li>
                     <li>Send ADA from an exchange or another wallet</li>
                 </ol>
             </>
@@ -98,7 +98,7 @@ const guides = [
         title: "Send ADA or Tokens",
         content: (
             <>
-                <p>Sending ADA or Cardano-native tokens is straightforward.</p>
+                <p>Sending ADA or -native tokens is straightforward.</p>
                 <p className="mt-2 font-semibold">How to send assets:</p>
                 <ol className="list-decimal list-inside space-y-1 ml-2">
                     <li>Click Send</li>
@@ -131,7 +131,7 @@ const guides = [
                     <li>Delegate your ADA</li>
                 </ol>
                 <p className="mt-2 text-sm text-gray-400">
-                    Staking rewards are automatically distributed by the Cardano network.
+                    Staking rewards are automatically distributed by the  network.
                 </p>
             </>
         ),
@@ -141,7 +141,7 @@ const guides = [
         title: "Manage NFTs in Eternal Wallet",
         content: (
             <>
-                <p>Eternal Wallet fully supports Cardano-native NFTs.</p>
+                <p>Eternal Wallet fully supports -native NFTs.</p>
                 <p className="mt-2 font-semibold">Users can:</p>
                 <ul className="list-disc list-inside space-y-1 ml-2">
                     <li>View NFT collections</li>
@@ -150,22 +150,22 @@ const guides = [
                 </ul>
                 <p className="mt-2 text-sm text-gray-400">
                     This makes Eternal ideal for NFT collectors and creators within the
-                    Cardano ecosystem.
+                    ecosystem.
                 </p>
             </>
         ),
     },
     {
         step: 8,
-        title: "Connect Eternal Wallet to Cardano DeFi Apps",
+        title: "Connect Eternal Wallet to  DeFi Apps",
         content: (
             <>
                 <p>
-                    Eternal Wallet acts as a gateway to Cardano Web3 and DeFi applications.
+                    Eternal Wallet acts as a gateway to  Web3 and DeFi applications.
                 </p>
                 <p className="mt-2 font-semibold">How to connect:</p>
                 <ol className="list-decimal list-inside space-y-1 ml-2">
-                    <li>Visit a Cardano dApp</li>
+                    <li>Visit a  dApp</li>
                     <li>Click Connect Wallet</li>
                     <li>Select Eternal</li>
                     <li>Approve the connection</li>
@@ -223,8 +223,8 @@ export default function HowToUseEternalPage() {
                     </div>
                     <p className="text-gray-400 text-lg leading-relaxed max-w-2xl">
                         Eternal Wallet is one of the most powerful non-custodial wallets
-                        built for the Cardano blockchain. Whether you want to store ADA,
-                        manage NFTs, stake tokens, or interact with Cardano DeFi
+                        built for the  blockchain. Whether you want to store ADA,
+                        manage NFTs, stake tokens, or interact with  DeFi
                         applications, Eternal offers advanced tools with full user control.
                     </p>
                     <div className="p-6 bg-gray-900/50 border border-gray-800 rounded-xl">
@@ -232,7 +232,7 @@ export default function HowToUseEternalPage() {
                             What Is Eternal Wallet?
                         </h3>
                         <p className="text-gray-400">
-                            Eternal Wallet is a Cardano-only, non-custodial crypto wallet that
+                            Eternal Wallet is a -only, non-custodial crypto wallet that
                             allows users to securely manage ADA, native tokens, and NFTs while
                             connecting to decentralized applications. Formerly known as
                             CCVault, Eternal has become a preferred wallet for users who need
@@ -315,7 +315,7 @@ export default function HowToUseEternalPage() {
                     <div className="space-y-4">
                         <p className="text-gray-300">Yes. Eternal Wallet is:</p>
                         <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                            {["Non-custodial", "Supports hardware wallets", "Uses open-source components", "Widely trusted in the Cardano community"].map((item, i) => (
+                            {["Non-custodial", "Supports hardware wallets", "Uses open-source components", "Widely trusted in the  community"].map((item, i) => (
                                 <li key={i} className="flex items-center gap-2 text-gray-300">
                                     <span className="text-green-500">✓</span> {item}
                                 </li>
@@ -329,10 +329,10 @@ export default function HowToUseEternalPage() {
                 <section className="mt-16 text-center space-y-6">
                     <h2 className="text-3xl font-bold text-white">Final Thoughts</h2>
                     <p className="text-xl text-gray-400 max-w-3xl mx-auto">
-                        Eternal Wallet is one of the most feature-rich Cardano wallets available today. While it may feel advanced at first, it provides unmatched control for users who want to stake ADA, manage NFTs, and interact with Cardano DeFi safely.
+                        Eternal Wallet is one of the most feature-rich  wallets available today. While it may feel advanced at first, it provides unmatched control for users who want to stake ADA, manage NFTs, and interact with  DeFi safely.
                     </p>
                     <p className="text-blue-400 font-medium">
-                        For users seeking flexibility, transparency, and deep Cardano integration, Eternal Wallet is an excellent choice.
+                        For users seeking flexibility, transparency, and deep  integration, Eternal Wallet is an excellent choice.
                     </p>
                     <div className="pt-8">
                         <Link

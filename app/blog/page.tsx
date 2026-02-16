@@ -7,7 +7,7 @@ const BlogPage = () => {
     const posts = [
         {
             id: 1,
-            title: "Understanding Cardano's EUTXO Model",
+            title: "Understanding 's EUTXO Model",
             excerpt: "Dive deep into the Extended Unspent Transaction Output model and how it differs from account-based models.",
             date: "Oct 24, 2025",
             readTime: "5 min read",
@@ -25,7 +25,7 @@ const BlogPage = () => {
         },
         {
             id: 3,
-            title: "The Future of DeFi on Cardano",
+            title: "The Future of DeFi on ",
             excerpt: "Exploring the upcoming protocols and decentralized exchanges that are shaping the ecosystem.",
             date: "Dec 05, 2025",
             readTime: "6 min read",

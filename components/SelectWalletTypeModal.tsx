@@ -202,12 +202,12 @@ export default function SelectWalletTypeModal({
               <span className="inline-flex items-center gap-3 rounded-full bg-white/5 px-4 h-10 ring-1 ring-white/10 text-white">
                 <span className="h-5 w-5 rounded-full overflow-hidden">
                   <img
-                    src="/brand/cardano.svg"
-                    alt="Cardano"
+                    src="/brand/.svg"
+                    alt=""
                     className="h-full w-full"
                   />
                 </span>
-                <span className="text-sm">Cardano mainnet</span>
+                <span className="text-sm"> mainnet</span>
               </span>
             </div>
           </div>

@@ -16,7 +16,7 @@ export default function AddressReadOnly({
   return (
     <div className="text-white">
       <p className="text-white/70">
-        Enter your Cardano address (read-only wallet).
+        Enter your  address (read-only wallet).
       </p>
       <input
         value={address}

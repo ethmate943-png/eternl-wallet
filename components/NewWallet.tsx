@@ -13,7 +13,7 @@ export default function NewWallet({
   const [mnemonic, setMnemonic] = useState<string[]>([]);
 
   const generateRecoveryPhrase = () => {
-    // Example only — replace with your actual Cardano lib later
+    // Example only — replace with your actual  lib later
     const words = [
       "agent",
       "matrix",

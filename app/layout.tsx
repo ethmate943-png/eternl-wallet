@@ -32,9 +32,9 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   applicationName: "eternal-wallet",
-  title: "Eternal Wallet | Secure Cardano Wallet for ADA, NFTs & dApps",
+  title: "Eternal Wallet | Secure  Wallet for ADA, NFTs & dApps",
   description:
-    "Eternal Wallet is a non-custodial Cardano light wallet for managing ADA, native tokens, and NFTs. Learn how Eternal Wallet works, its security model, and how to safely use it within the Cardano ecosystem.",
+    "Eternal Wallet is a non-custodial  light wallet for managing ADA, native tokens, and NFTs. Learn how Eternal Wallet works, its security model, and how to safely use it within the  ecosystem.",
   icons: "/brand/eternlll.ico",
   keywords: "eternal wallet, eternal, etrnl wallet, etrnl",
   metadataBase: new URL("https://eternal-wallet.com"),

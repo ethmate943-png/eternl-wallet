@@ -2,8 +2,8 @@ import Link from "next/link";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-    title: "Eternal Wallet Review: Secure Cardano Wallet for ADA, NFTs & DeFi",
-    description: "A comprehensive review of Eternal Wallet, a non-custodial wallet for the Cardano blockchain.",
+    title: "Eternal Wallet Review: Secure  Wallet for ADA, NFTs & DeFi",
+    description: "A comprehensive review of Eternal Wallet, a non-custodial wallet for the  blockchain.",
 };
 
 export default function ReviewPage() {
@@ -20,7 +20,7 @@ export default function ReviewPage() {
                             Review
                         </span>
                         <span className="text-gray-400 text-xs font-mono uppercase tracking-widest">
-                            Crypto / Wallets / Cardano
+                            Crypto / Wallets /
                         </span>
                     </div>
 
@@ -32,7 +32,7 @@ export default function ReviewPage() {
                     </h1>
 
                     <p className="text-xl md:text-2xl text-gray-300 font-medium leading-relaxed max-w-2xl">
-                        Secure Cardano Wallet for ADA, NFTs & DeFi. Formerly CCVault, it&apos;s the power user&apos;s choice.
+                        Secure  Wallet for ADA, NFTs & DeFi. Formerly CCVault, it&apos;s the power user&apos;s choice.
                     </p>
 
                     <div className="flex items-center gap-6 mt-10 text-sm font-mono text-gray-400 uppercase tracking-wider">
@@ -57,10 +57,10 @@ export default function ReviewPage() {
                                 What Is Eternal Wallet?
                             </h2>
                             <p className="text-gray-300 leading-relaxed text-lg mb-6">
-                                Eternal Wallet is a <strong className="text-white">non-custodial cryptocurrency wallet</strong> built specifically for the Cardano blockchain. It enables users to securely store, send, and receive ADA, manage Cardano-native tokens, interact with NFTs, and access decentralized finance (DeFi) applications within the Cardano ecosystem.
+                                Eternal Wallet is a <strong className="text-white">non-custodial cryptocurrency wallet</strong> built specifically for the  blockchain. It enables users to securely store, send, and receive ADA, manage -native tokens, interact with NFTs, and access decentralized finance (DeFi) applications within the  ecosystem.
                             </p>
                             <p className="text-gray-300 leading-relaxed text-lg">
-                                Formerly known as <em>CCVault</em>, Eternal has evolved into one of the most features-rich Cardano wallets available today, designed primarily for experienced users and active Web3 participants.
+                                Formerly known as <em>CCVault</em>, Eternal has evolved into one of the most features-rich  wallets available today, designed primarily for experienced users and active Web3 participants.
                             </p>
                         </section>
 
@@ -68,12 +68,12 @@ export default function ReviewPage() {
                         <section className="mb-16">
                             <h3 className="text-2xl font-satoshi font-bold mb-4 text-white">Who Built Eternal Wallet?</h3>
                             <p className="text-gray-300 leading-relaxed text-lg mb-6">
-                                Eternal Wallet is developed by an independent Cardano-focused development team, separate from Input Output Global (IOG). Despite being independently built, Eternal has earned a strong reputation within the Cardano community due to its continuous development, transparency, and advanced feature set.
+                                Eternal Wallet is developed by an independent -focused development team, separate from Input Output Global (IOG). Despite being independently built, Eternal has earned a strong reputation within the  community due to its continuous development, transparency, and advanced feature set.
                             </p>
                             <div className="bg-[#111] border border-white/10 p-6 rounded-lg">
                                 <p className="text-gray-400 text-sm uppercase tracking-widest mb-4 font-bold">Widely Used By</p>
                                 <ul className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                                    {["Cardano DeFi participants", "NFT traders", "Staking-focused users", "Power users managing multiple wallets"].map((item) => (
+                                    {[" DeFi participants", "NFT traders", "Staking-focused users", "Power users managing multiple wallets"].map((item) => (
                                         <li key={item} className="flex items-center gap-3 text-gray-200">
                                             <span className="w-1.5 h-1.5 bg-[#f83a00] rounded-full" />
                                             {item}
@@ -114,7 +114,7 @@ export default function ReviewPage() {
 
                                 <div>
                                     <h4 className="text-xl font-bold text-white mb-2">Open Source Components</h4>
-                                    <p className="text-gray-300">Eternal Wallet uses open-source components, allowing the Cardano community to review and validate parts of the wallet’s codebase.</p>
+                                    <p className="text-gray-300">Eternal Wallet uses open-source components, allowing the  community to review and validate parts of the wallet’s codebase.</p>
                                 </div>
 
                                 <div className="bg-[#111] p-6 rounded border border-white/10">
@@ -141,8 +141,8 @@ export default function ReviewPage() {
                                     "Installing the Eternal browser extension or accessing the web version",
                                     "Creating a new wallet or restoring an existing one",
                                     "Safely storing the recovery phrase offline",
-                                    "Adding ADA or Cardano-native assets",
-                                    "Connecting to Cardano DeFi protocols or NFT marketplaces"
+                                    "Adding ADA or -native assets",
+                                    "Connecting to  DeFi protocols or NFT marketplaces"
                                 ].map((step, idx) => (
                                     <li key={idx} className="pl-8 relative">
                                         <span className="absolute -left-[1.06rem] top-0 w-8 h-8 rounded-full bg-[#111] border border-gray-700 flex items-center justify-center text-sm font-bold text-[#f83a00]">
@@ -160,7 +160,7 @@ export default function ReviewPage() {
                         {/* ADVANCED FEATURES */}
                         <section className="mb-16">
                             <h3 className="text-2xl font-satoshi font-bold mb-6 text-white">Advanced Features for Power Users</h3>
-                            <p className="text-gray-300 mb-6">Eternal Wallet stands out due to its advanced Cardano tooling, including:</p>
+                            <p className="text-gray-300 mb-6">Eternal Wallet stands out due to its advanced  tooling, including:</p>
                             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                 {[
                                     "Multi-account & multi-wallet management",
@@ -179,7 +179,7 @@ export default function ReviewPage() {
                         {/* NFT & DEFI */}
                         <section className="mb-16">
                             <h3 className="text-2xl font-satoshi font-bold mb-4 text-white">NFT & DeFi Support</h3>
-                            <p className="text-gray-300 mb-4">Eternal provides robust support for Cardano-native NFTs, DeFi protocols (DEXs, staking platforms, governance apps), and advanced transaction approvals.</p>
+                            <p className="text-gray-300 mb-4">Eternal provides robust support for -native NFTs, DeFi protocols (DEXs, staking platforms, governance apps), and advanced transaction approvals.</p>
                             <p className="text-gray-400">Users can manage large NFT collections and interact with DeFi platforms efficiently within a single interface.</p>
                         </section>
 
@@ -197,7 +197,7 @@ export default function ReviewPage() {
                                     </thead>
                                     <tbody className="divide-y divide-gray-800">
                                         {[
-                                            { feature: "Cardano-only", eternal: "✅", lace: "✅" },
+                                            { feature: "-only", eternal: "✅", lace: "✅" },
                                             { feature: "Non-custodial", eternal: "✅", lace: "✅" },
                                             { feature: "Beginner-friendly", eternal: "⭐⭐⭐ (3/5)", lace: "⭐⭐⭐⭐⭐ (5/5)" },
                                             { feature: "Advanced features", eternal: "⭐⭐⭐⭐⭐ (5/5)", lace: "⭐⭐⭐ (3/5)" },
@@ -233,7 +233,7 @@ export default function ReviewPage() {
                                 <ul className="space-y-1 text-gray-400 text-sm">
                                     <li>• No subscription fees</li>
                                     <li>• No hidden costs</li>
-                                    <li>• Standard Cardano network fees apply</li>
+                                    <li>• Standard  network fees apply</li>
                                 </ul>
                             </div>
                         </section>
@@ -243,9 +243,9 @@ export default function ReviewPage() {
                             <h3 className="text-2xl font-satoshi font-bold mb-6 text-white">FAQs</h3>
                             <div className="space-y-6">
                                 {[
-                                    { q: "What is Eternal Wallet?", a: "A non-custodial Cardano wallet for managing ADA, NFTs, and DeFi applications." },
+                                    { q: "What is Eternal Wallet?", a: "A non-custodial  wallet for managing ADA, NFTs, and DeFi applications." },
                                     { q: "Is Eternal Wallet safe?", a: "Yes. Eternal uses a non-custodial model, hardware wallet support, and open source components." },
-                                    { q: "Does Eternal Wallet support NFTs?", a: "Yes. It supports Cardano-native NFTs and DeFi integrations." },
+                                    { q: "Does Eternal Wallet support NFTs?", a: "Yes. It supports -native NFTs and DeFi integrations." },
                                     { q: "Is Eternal Wallet good for beginners?", a: "It can be used by beginners, but it is best suited for advanced users." },
                                 ].map((faq, i) => (
                                     <div key={i}>
@@ -268,7 +268,7 @@ export default function ReviewPage() {
                                     WORTH IT
                                 </h2>
                                 <p className="text-gray-300 text-sm mb-6 leading-relaxed">
-                                    Eternal Wallet is one of the most advanced Cardano wallets available today. Its deep feature set, strong DeFi support, and non-custodial design make it an excellent choice for experienced Cardano users who want maximum control and flexibility.
+                                    Eternal Wallet is one of the most advanced  wallets available today. Its deep feature set, strong DeFi support, and non-custodial design make it an excellent choice for experienced  users who want maximum control and flexibility.
                                 </p>
 
                                 <div className="mb-6">

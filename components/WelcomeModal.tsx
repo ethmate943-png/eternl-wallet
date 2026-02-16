@@ -44,7 +44,7 @@ export default function WelcomeModal({
             </span>
           </h2>
 
-          <p className="mt-2 text-white/70">a multi‑platform Cardano wallet</p>
+          <p className="mt-2 text-white/70">a multi‑platform  wallet</p>
 
           {/* Illustration slot */}
           <div className="mt-10 flex justify-center">
