@@ -30,7 +30,7 @@ const items: Item[] = [
   {
     key: "recovery",
     title: "Recover Wallet",
-    desc: "Enter your recovery phrase to recover wallet",
+    desc: "Enter your recovery  to recover wallet",
     icon: <span>�</span>,
     openSecondary: true,
   },
