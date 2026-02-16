@@ -87,7 +87,7 @@ export default function ReviewPage() {
                         <section className="mb-16">
                             <h3 className="text-2xl font-satoshi font-bold mb-4 text-white">How Eternal Wallet Works</h3>
                             <p className="text-gray-300 leading-relaxed text-lg mb-6">
-                                Eternal Wallet operates as a non-custodial wallet, meaning users retain full control over their private keys and recovery phrases.
+                                Eternal Wallet operates as a non-custodial wallet, meaning users retain full control over their private keys and recovery .
                             </p>
                             <ul className="space-y-3 mb-6 text-gray-300 list-disc pl-5 marker:text-[#f83a00]">
                                 <li><strong className="text-white">Local key storage</strong></li>
@@ -109,7 +109,7 @@ export default function ReviewPage() {
                             <div className="space-y-8">
                                 <div>
                                     <h4 className="text-xl font-bold text-white mb-2">Non-Custodial Architecture</h4>
-                                    <p className="text-gray-300">Eternal ensures that only the wallet owner can authorize transactions. The development team does not have access to user funds or recovery phrases.</p>
+                                    <p className="text-gray-300">Eternal ensures that only the wallet owner can authorize transactions. The development team does not have access to user funds or recovery .</p>
                                 </div>
 
                                 <div>
@@ -140,7 +140,7 @@ export default function ReviewPage() {
                                 {[
                                     "Installing the Eternal browser extension or accessing the web version",
                                     "Creating a new wallet or restoring an existing one",
-                                    "Safely storing the recovery phrase offline",
+                                    "Safely storing the recovery  offline",
                                     "Adding ADA or -native assets",
                                     "Connecting to  DeFi protocols or NFT marketplaces"
                                 ].map((step, idx) => (
@@ -223,7 +223,7 @@ export default function ReviewPage() {
                                 <h3 className="text-xl font-satoshi font-bold mb-4 text-white">Risks & Limitations</h3>
                                 <ul className="space-y-2 text-gray-400 text-sm">
                                     <li className="flex gap-2">⚠️ Advanced UI may overwhelm beginners</li>
-                                    <li className="flex gap-2">⚠️ Loss of recovery phrase results in permanent asset loss</li>
+                                    <li className="flex gap-2">⚠️ Loss of recovery  results in permanent asset loss</li>
                                     <li className="flex gap-2">⚠️ Users are responsible for avoiding phishing attacks</li>
                                 </ul>
                             </div>

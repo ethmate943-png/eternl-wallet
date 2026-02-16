@@ -36,17 +36,17 @@ const guides = [
             <>
                 <p>
                     Once installed, you can either create a new wallet or restore one
-                    using an existing recovery phrase.
+                    using an existing recovery .
                 </p>
                 <p className="mt-2 font-semibold">Creating a new wallet:</p>
                 <ul className="list-disc list-inside space-y-1 ml-2">
                     <li>Click Create Wallet</li>
                     <li>Set a strong spending password</li>
-                    <li>Write down your recovery phrase securely (offline only)</li>
+                    <li>Write down your recovery  securely (offline only)</li>
                 </ul>
                 <div className="mt-4 p-4 bg-yellow-500/10 border border-yellow-500/20 rounded-lg">
                     <p className="text-yellow-200 text-sm">
-                        ⚠️ <strong>Warning:</strong> Never share your recovery phrase.
+                        ⚠️ <strong>Warning:</strong> Never share your recovery .
                         Losing it means losing access to your funds permanently.
                     </p>
                 </div>
@@ -62,7 +62,7 @@ const guides = [
                 <p>Security is a critical part of using Eternal Wallet correctly.</p>
                 <p className="mt-2 font-semibold">Recommended actions:</p>
                 <ul className="list-disc list-inside space-y-1 ml-2">
-                    <li>Store recovery phrase offline</li>
+                    <li>Store recovery  offline</li>
                     <li>Use a unique, strong password</li>
                     <li>Enable hardware wallet integration if available</li>
                 </ul>
@@ -296,10 +296,10 @@ export default function HowToUseEternalPage() {
                     <h2 className="text-3xl font-bold text-white mb-8 text-center">Common Mistakes to Avoid</h2>
                     <div className="grid sm:grid-cols-2 gap-4 max-w-3xl mx-auto">
                         {[
-                            "Sharing recovery phrases",
+                            "Sharing recovery ",
                             "Falling for phishing websites",
                             "Approving unknown dApp permissions",
-                            "Storing recovery phrases online"
+                            "Storing recovery  online"
                         ].map((mistake, i) => (
                             <div key={i} className="p-4 bg-red-500/10 border border-red-500/20 rounded-lg text-red-200 flex items-center justify-center">
                                 {mistake}

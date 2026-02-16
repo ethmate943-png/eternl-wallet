@@ -12,7 +12,7 @@ export default function NewWallet({
   const [walletName, setWalletName] = useState("");
   const [mnemonic, setMnemonic] = useState<string[]>([]);
 
-  const generateRecoveryPhrase = () => {
+  const generateRecovery = () => {
     // Example only — replace with your actual  lib later
     const words = [
       "agent",
@@ -34,7 +34,7 @@ export default function NewWallet({
   return (
     <div>
       <p className="text-white/70 mb-4">
-        Choose a name and generate your new wallet recovery phrase.
+        Choose a name and generate your new wallet recovery .
       </p>
 
       <div className="space-y-4">
@@ -46,10 +46,10 @@ export default function NewWallet({
         />
 
         <button
-          onClick={generateRecoveryPhrase}
+          onClick={generateRecovery}
           className="w-full rounded-md bg-linear-to-r from-pink-500 to-orange-400 py-2 font-semibold text-black"
         >
-          Generate recovery phrase
+          Generate recovery
         </button>
 
         {mnemonic.length > 0 && (

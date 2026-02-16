@@ -70,7 +70,7 @@ export default function Page() {
         {/* Inputs */}
         <div
           className="mt-12 grid grid-cols-3 gap-4 sm:grid-cols-4"
-          aria-label="Recovery phrase inputs"
+          aria-label="Recovery  inputs"
         >
           {words.map((w, i) => (
             <label key={w.index} className="relative">
@@ -100,10 +100,9 @@ export default function Page() {
           </button>
           <button
             className={`flex-1 h-11 rounded-xl text-black font-semibold transition-all backdrop-blur
-              ${
-                allFilled
-                  ? "bg-sky-400 hover:bg-sky-300 shadow-md"
-                  : "bg-sky-400/30 cursor-not-allowed opacity-50"
+              ${allFilled
+                ? "bg-sky-400 hover:bg-sky-300 shadow-md"
+                : "bg-sky-400/30 cursor-not-allowed opacity-50"
               }`}
             disabled={!allFilled}
           >
