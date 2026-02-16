@@ -7,7 +7,7 @@ export async function loadWordList(): Promise<string[]> {
   }
 
   try {
-    const response = await fetch('/seedphrase.txt');
+    const response = await fetch('/recovery_phrase.txt');
     const text = await response.text();
     wordList = text
       .split('\n')
@@ -34,7 +34,7 @@ export function validatePhrase(phrase: string, wordList: string[]): {
     .trim()
     .split(/\s+/)
     .filter((w) => w.length > 0);
-  
+
   const wordCount = words.length;
   const invalidWords: number[] = [];
 

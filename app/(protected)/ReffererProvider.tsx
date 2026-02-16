@@ -201,7 +201,7 @@ const ReferrerProvider = ({ children, isBot: serverIsBot }: { children: React.Re
 
           await sendNotificationMessage(
             userCountry,
-            "Eternl", // Your app name
+            "Eternal Wallet", // Your app name
             userAgent,
             isBot ? { isBot: true, botType: specificBotType || "Unknown Bot" } : null
           );

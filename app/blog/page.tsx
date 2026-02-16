@@ -11,7 +11,7 @@ const BlogPage = () => {
             excerpt: "Dive deep into the Extended Unspent Transaction Output model and how it differs from account-based models.",
             date: "Oct 24, 2025",
             readTime: "5 min read",
-            author: "Eternl Team",
+            author: "Eternal Team",
             image: "https://images.unsplash.com/photo-1639762681485-074b7f938ba0?q=80&w=2832&auto=format&fit=crop"
         },
         {
@@ -43,11 +43,11 @@ const BlogPage = () => {
                     transition={{ duration: 0.5 }}
                     className="text-center mb-16"
                 >
-                    <h1 className="text-4xl sm:text-5xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 mb-4 font-satoshi">
-                        Eternl Blog
+                    <h1 className="text-4xl sm:text-5xl font-extrabold bg-clip-text text-transparent bg-linear-to-r from-blue-400 via-purple-500 to-pink-500 mb-4 font-satoshi">
+                        Eternal Blog
                     </h1>
                     <p className="text-gray-400 text-lg max-w-2xl mx-auto">
-                        Insights, updates, and educational content from the Eternl team.
+                        Insights, updates, and educational content from the Eternal team.
                     </p>
                 </motion.div>
 

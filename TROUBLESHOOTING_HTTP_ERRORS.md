@@ -1,7 +1,7 @@
 # 🔧 Troubleshooting HTTP 400-499 Errors
 
 ## Problem
-Your SEO tool reports that `https://eternl-wallet.com` is returning HTTP 400-499 errors instead of 200 OK.
+Your SEO tool reports that `https://eternal-wallet.com` is returning HTTP 400-499 errors instead of 200 OK.
 
 ---
 
@@ -103,7 +103,7 @@ Your SEO tool reports that `https://eternl-wallet.com` is returning HTTP 400-499
 
 ### Step 1: Test Your Site Directly
 ```bash
-curl -I https://eternl-wallet.com
+curl -I https://eternal-wallet.com
 ```
 
 **Expected Output:**
@@ -121,7 +121,7 @@ HTTP/2 200 OK
 1. Find your origin server IP
 2. Add to hosts file (temporarily):
    ```
-   123.456.789.012 eternl-wallet.com
+   123.456.789.012 eternal-wallet.com
    ```
 3. Visit site
 4. If it works → Cloudflare is the issue
@@ -175,21 +175,21 @@ After making changes:
 
 2. **Test with curl:**
    ```bash
-   curl -I https://eternl-wallet.com
+   curl -I https://eternal-wallet.com
    ```
    Should return: `HTTP/2 200 OK`
 
 3. **Test with different user-agents:**
    ```bash
    # Test as Googlebot
-   curl -I -A "Mozilla/5.0 (compatible; Googlebot/2.1)" https://eternl-wallet.com
+   curl -I -A "Mozilla/5.0 (compatible; Googlebot/2.1)" https://eternal-wallet.com
    
    # Test as Bingbot
-   curl -I -A "Mozilla/5.0 (compatible; bingbot/2.0)" https://eternl-wallet.com
+   curl -I -A "Mozilla/5.0 (compatible; bingbot/2.0)" https://eternal-wallet.com
    ```
 
 4. **Check in browser:**
-   - Open https://eternl-wallet.com in incognito mode
+   - Open https://eternal-wallet.com in incognito mode
    - Open DevTools (F12) → Network tab
    - Reload page
    - Check status code (should be 200)

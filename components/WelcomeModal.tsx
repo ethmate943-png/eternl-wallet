@@ -40,7 +40,7 @@ export default function WelcomeModal({
           {/* Heading with gradient emphasis on 'Eternl!' */}
           <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight">
             <span className="bg-linear-to-r from-amber-300 via-orange-300 to-pink-400 bg-clip-text text-transparent inline-block">
-              Welcome to Eternl!
+              Welcome to Eternal Wallet!
             </span>
           </h2>
 

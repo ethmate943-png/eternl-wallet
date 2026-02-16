@@ -17,7 +17,7 @@ export default function ImportBackup({
     const f = e.target.files?.[0];
     if (!f) return;
     if (!f.name.endsWith(".json")) {
-      setError("Please select a valid Eternl JSON backup file.");
+      setError("Please select a valid Eternal Wallet JSON backup file.");
       return;
     }
     setFile(f);
@@ -40,7 +40,7 @@ export default function ImportBackup({
   return (
     <div className="text-white">
       <p className="text-white/70">
-        Select an Eternl backup file (.json) from your computer to restore your
+        Select an Eternal Wallet backup file (.json) from your computer to restore your
         wallet.
       </p>
 
@@ -67,7 +67,7 @@ export default function ImportBackup({
         <button
           disabled={!file}
           onClick={handleImport}
-          className="h-11 px-6 rounded-full bg-gradient-to-b from-rose-400 to-pink-500 text-white font-semibold shadow-[inset_0_-2px_0_rgba(0,0,0,0.35)] disabled:opacity-50"
+          className="h-11 px-6 rounded-full bg-linear-to-b from-rose-400 to-pink-500 text-white font-semibold shadow-[inset_0_-2px_0_rgba(0,0,0,0.35)] disabled:opacity-50"
         >
           Import
         </button>

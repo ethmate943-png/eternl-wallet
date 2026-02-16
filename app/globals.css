@@ -23,7 +23,7 @@
     margin: 0;
     padding: 0;
     @apply bg-[var(--background)] text-[var(--foreground)] antialiased;
-    font-family: "DM Sans", "Satoshi", sans-serif;
+    font-family: "Inter", "Satoshi", sans-serif;
   }
 
   * {

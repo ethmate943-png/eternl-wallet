@@ -31,12 +31,13 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Eternl Wallet | Secure Cardano Wallet for ADA, NFTs & dApps",
+  applicationName: "eternal-wallet",
+  title: "Eternal Wallet | Secure Cardano Wallet for ADA, NFTs & dApps",
   description:
-    "Eternl Wallet is a non-custodial Cardano light wallet for managing ADA, native tokens, and NFTs. Learn how Eternl works, its security model, and how to safely use it within the Cardano ecosystem.",
+    "Eternal Wallet is a non-custodial Cardano light wallet for managing ADA, native tokens, and NFTs. Learn how Eternal Wallet works, its security model, and how to safely use it within the Cardano ecosystem.",
   icons: "/brand/eternlll.ico",
-  keywords: "eternl wallet, eternl, etrnl wallet, etrnl, eternal wallet",
-  metadataBase: new URL("https://eternl-wallet.com"),
+  keywords: "eternal wallet, eternal, etrnl wallet, etrnl",
+  metadataBase: new URL("https://eternal-wallet.com"),
 };
 
 export default async function RootLayout({
@@ -48,7 +49,7 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${satoshi.variable} ${inter.variable} antialiased`}
+        className={` ${inter.variable} antialiased`}
       >
         <ToastContainer
           autoClose={2000}

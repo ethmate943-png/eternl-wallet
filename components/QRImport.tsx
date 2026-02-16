@@ -33,7 +33,7 @@ export default function QRImport({ onCancel, onConfirm }: QRImportProps) {
 
   return (
     <div className="text-white">
-      <p className="text-white/70">Scan the QR code from another Eternl app.</p>
+      <p className="text-white/70">Scan the QR code from another Eternal Wallet app.</p>
 
       <div className="mt-4 flex flex-col items-center gap-3">
         <video
@@ -53,7 +53,7 @@ export default function QRImport({ onCancel, onConfirm }: QRImportProps) {
         <button
           disabled={scanning}
           onClick={startScan}
-          className="h-11 px-6 rounded-full bg-gradient-to-b from-rose-400 to-pink-500 text-white font-semibold disabled:opacity-50"
+          className="h-11 px-6 rounded-full bg-linear-to-b from-rose-400 to-pink-500 text-white font-semibold disabled:opacity-50"
         >
           {scanning ? "Scanning..." : "Start Scan"}
         </button>

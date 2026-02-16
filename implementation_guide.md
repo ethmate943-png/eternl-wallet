@@ -88,6 +88,6 @@ fontFamily: {
 
 ```tsx
 // app/blog/page.tsx
-<h1 className="... font-satoshi">Eternl Blog</h1>
+<h1 className="... font-satoshi">Eternal Blog</h1>
 <h3 className="... font-satoshi">Post Title</h3>
 ```

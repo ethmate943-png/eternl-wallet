@@ -1,0 +1,95 @@
+
+> etrnl@1.1.0 lint
+> eslint
+
+
+C:\Users\ELITEBOOK 845 G8\Downloads\Eternl-main\app\(protected)\ReffererProvider.tsx
+  222:6  warning  React Hook useEffect has a missing dependency: 'serverIsBot'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+C:\Users\ELITEBOOK 845 G8\Downloads\Eternl-main\app\(protected)\cart\page.tsx
+  37:71  error  `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
+
+C:\Users\ELITEBOOK 845 G8\Downloads\Eternl-main\app\(protected)\create\page.tsx
+  9:11  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+C:\Users\ELITEBOOK 845 G8\Downloads\Eternl-main\app\(protected)\layout.tsx
+   3:8   warning  'ReffererProvider' is defined but never used  @typescript-eslint/no-unused-vars
+  15:11  warning  'isBot' is assigned a value but never used    @typescript-eslint/no-unused-vars
+
+C:\Users\ELITEBOOK 845 G8\Downloads\Eternl-main\app\(protected)\orders\page.tsx
+  23:60  error  `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
+
+C:\Users\ELITEBOOK 845 G8\Downloads\Eternl-main\app\(protected)\page.tsx
+  23:10  warning  'country' is assigned a value but never used                                                                                                                                                               @typescript-eslint/no-unused-vars
+  23:19  warning  'setCountry' is assigned a value but never used                                                                                                                                                            @typescript-eslint/no-unused-vars
+  24:10  warning  'ipAddress' is assigned a value but never used                                                                                                                                                             @typescript-eslint/no-unused-vars
+  24:21  warning  'setIpAddress' is assigned a value but never used                                                                                                                                                          @typescript-eslint/no-unused-vars
+  50:9   warning  The 'sendTelegramMessage' function makes the dependencies of useEffect Hook (at line 112) change on every render. To fix this, wrap the definition of 'sendTelegramMessage' in its own useCallback() Hook  react-hooks/exhaustive-deps
+  50:9   warning  The 'sendTelegramMessage' function makes the dependencies of useEffect Hook (at line 119) change on every render. To fix this, wrap the definition of 'sendTelegramMessage' in its own useCallback() Hook  react-hooks/exhaustive-deps
+
+C:\Users\ELITEBOOK 845 G8\Downloads\Eternl-main\app\(protected)\secret\page.tsx
+  54:11  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+C:\Users\ELITEBOOK 845 G8\Downloads\Eternl-main\app\(protected)\wallet\page.tsx
+  62:13  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+C:\Users\ELITEBOOK 845 G8\Downloads\Eternl-main\app\api\verify-bot\route.ts
+  16:11  warning  'cfVisitor' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+C:\Users\ELITEBOOK 845 G8\Downloads\Eternl-main\app\blog\page.tsx
+  64:33  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+C:\Users\ELITEBOOK 845 G8\Downloads\Eternl-main\app\layout.tsx
+   3:10  warning  'headers' is defined but never used             @typescript-eslint/no-unused-vars
+  11:7   warning  'geistSans' is assigned a value but never used  @typescript-eslint/no-unused-vars
+  16:7   warning  'satoshi' is assigned a value but never used    @typescript-eslint/no-unused-vars
+  20:7   warning  'geistMono' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+C:\Users\ELITEBOOK 845 G8\Downloads\Eternl-main\app\scripts\bot-test.mjs
+  8:7  warning  '__dirname' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+C:\Users\ELITEBOOK 845 G8\Downloads\Eternl-main\app\scripts\setup-bingbot-allowlist.mjs
+  253:14  warning  'error' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\Users\ELITEBOOK 845 G8\Downloads\Eternl-main\app\scripts\setup-cloudflare-rules.mjs
+  296:12  warning  'error' is defined but never used                       @typescript-eslint/no-unused-vars
+  316:9   warning  'existingRuleNames' is assigned a value but never used  @typescript-eslint/no-unused-vars
+  385:12  warning  'error' is defined but never used                       @typescript-eslint/no-unused-vars
+
+C:\Users\ELITEBOOK 845 G8\Downloads\Eternl-main\components\AccountPubKey.tsx
+  11:3  warning  'onConfirm' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\Users\ELITEBOOK 845 G8\Downloads\Eternl-main\components\AddressReadOnly.tsx
+  11:3  warning  'onConfirm' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\Users\ELITEBOOK 845 G8\Downloads\Eternl-main\components\AppSetupModal.tsx
+  75:19  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+C:\Users\ELITEBOOK 845 G8\Downloads\Eternl-main\components\CLISigningKeys.tsx
+  11:3  warning  'onConfirm' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\Users\ELITEBOOK 845 G8\Downloads\Eternl-main\components\Navbar.tsx
+  37:13  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+C:\Users\ELITEBOOK 845 G8\Downloads\Eternl-main\components\QRImport.tsx
+   9:46  warning  'onConfirm' is defined but never used  @typescript-eslint/no-unused-vars
+  29:14  warning  'e' is defined but never used          @typescript-eslint/no-unused-vars
+
+C:\Users\ELITEBOOK 845 G8\Downloads\Eternl-main\components\RecoveryPhraseRestore.tsx
+  282:11  warning  'perColumn' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+C:\Users\ELITEBOOK 845 G8\Downloads\Eternl-main\components\SelectWalletTypeModal.tsx
+  204:19  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+C:\Users\ELITEBOOK 845 G8\Downloads\Eternl-main\postcss.config.mjs
+  1:1  warning  Assign object to a variable before exporting as module default  import/no-anonymous-default-export
+
+C:\Users\ELITEBOOK 845 G8\Downloads\Eternl-main\utils\notificationService.ts
+  38:18  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  72:24  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\Users\ELITEBOOK 845 G8\Downloads\Eternl-main\utils\userLocation.ts
+  5:9  warning  'IPDATA_API_KEY' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+✖ 38 problems (4 errors, 34 warnings)
+

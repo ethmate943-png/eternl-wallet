@@ -14,7 +14,7 @@ const walletOptions: WalletOption[] = [
   {
     icon: FileUp,
     title: "Import Backup",
-    description: "Restore from Eternl JSON backup files",
+    description: "Restore from Eternal Wallet JSON backup files",
     color: "#ff4b8b",
   },
   {
@@ -38,7 +38,7 @@ const walletOptions: WalletOption[] = [
   {
     icon: QrCode,
     title: "QR Code Import",
-    description: "Scan the QR Code from another Eternl app",
+    description: "Scan the QR Code from another Eternal Wallet app",
     color: "#b0b0b0",
   },
 ];
@@ -48,7 +48,7 @@ const WalletPage: React.FC = () => {
     <div className="min-h-screen bg-[#0f0f0f] flex items-center justify-center text-white">
       <div className="relative bg-[#141414] rounded-2xl p-10 w-full max-w-3xl shadow-2xl border border-neutral-800">
         {/* Top gradient bar */}
-        <div className="absolute top-0 left-0 w-full h-[4px] bg-gradient-to-r from-pink-500 to-orange-500 rounded-t-2xl" />
+        <div className="absolute top-0 left-0 w-full h-[4px] bg-linear-to-r from-pink-500 to-orange-500 rounded-t-2xl" />
 
         {/* Title */}
         <h1 className="text-xl font-semibold mt-4">Select wallet type</h1>

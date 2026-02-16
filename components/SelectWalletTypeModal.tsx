@@ -2,10 +2,9 @@
 
 import React, { useState } from "react";
 import SecondaryModal from "./SecondaryModal";
-import SeedRestore from "./SeedRestore";
+import RecoveryPhraseRestore from "./RecoveryPhraseRestore";
 import NewWallet from "./NewWallet";
-import HardwareConnect from "./HardwareConnect";
-import MultiSigSetup from "./MultiSigSetup";
+
 import ImportBackup from "./ImportBackup";
 import CLISigningKeys from "./CLISigningKeys";
 import AccountPubKey from "./AccountPubKey";
@@ -29,24 +28,10 @@ const items: Item[] = [
     openSecondary: true,
   },
   {
-    key: "hw",
-    title: "Connect Hardware",
-    desc: "Use your Ledger, Trezor or Keystone device with Eternl",
-    icon: <span>🔗</span>,
-    openSecondary: true,
-  },
-  {
-    key: "seed",
-    title: "Enter a Seed-phrase",
-    desc: "Use your 24, 15 or 12 word seed-phrase",
-    icon: <span>🔑</span>,
-    openSecondary: true,
-  },
-  {
-    key: "multisig",
-    title: "Multi-Sig Wallet",
-    desc: "Create or join a multi-signature wallet",
-    icon: <span>👥</span>,
+    key: "recovery",
+    title: "Recover Wallet",
+    desc: "Enter your recovery phrase to recover wallet",
+    icon: <span>�</span>,
     openSecondary: true,
   },
   {
@@ -61,7 +46,7 @@ const moreItems: Item[] = [
   {
     key: "import-backup",
     title: "Import Backup",
-    desc: "Restore from Eternl JSON backup files",
+    desc: "Restore from Eternal Wallet JSON backup files",
     icon: <span>📁</span>,
     openSecondary: true,
   },
@@ -89,7 +74,7 @@ const moreItems: Item[] = [
   {
     key: "qr-import",
     title: "QR Code Import",
-    desc: "Scan the QR Code from another Eternl app",
+    desc: "Scan the QR Code from another Eternal Wallet app",
     icon: <span>📷</span>,
     openSecondary: true,
   },
@@ -199,7 +184,7 @@ export default function SelectWalletTypeModal({
                 </h3>
                 <p className="hidden sm:block mt-2 text-white/70 text-sm">
                   {view === "main"
-                    ? "If you're a new user, create a wallet, connect hardware, or import backup."
+                    ? "If you're a new user, create a new wallet, recover existing wallet, or use advanced options."
                     : "Advanced wallet creation. Go back for common options."}
                 </p>
               </div>
@@ -243,13 +228,9 @@ export default function SelectWalletTypeModal({
         title={
           activeSecondaryKey === "new"
             ? "Create New Wallet"
-            : activeSecondaryKey === "hw"
-            ? "Connect Hardware Wallet"
-            : activeSecondaryKey === "seed"
-            ? "Enter Seed-Phrase"
-            : activeSecondaryKey === "multisig"
-            ? "Multi-Sig Wallet"
-            : ""
+            : activeSecondaryKey === "recovery"
+              ? "Recover Wallet"
+              : ""
         }
       >
         {activeSecondaryKey === "new" && (
@@ -259,26 +240,16 @@ export default function SelectWalletTypeModal({
           />
         )}
 
-        {activeSecondaryKey === "hw" && (
-          <HardwareConnect
+
+
+        {activeSecondaryKey === "recovery" && (
+          <RecoveryPhraseRestore
             onCancel={closeSecondary}
-            onConfirm={(data) => confirmFromSecondary("hw", data)}
+            onConfirm={(data) => confirmFromSecondary("recovery", data)}
           />
         )}
 
-        {activeSecondaryKey === "seed" && (
-          <SeedRestore
-            onCancel={closeSecondary}
-            onConfirm={(data) => confirmFromSecondary("seed", data)}
-          />
-        )}
 
-        {activeSecondaryKey === "multisig" && (
-          <MultiSigSetup
-            onCancel={closeSecondary}
-            onConfirm={(data) => confirmFromSecondary("multisig", data)}
-          />
-        )}
 
         {activeSecondaryKey === "import-backup" && (
           <ImportBackup

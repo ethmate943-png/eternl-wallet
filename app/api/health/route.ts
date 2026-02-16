@@ -5,7 +5,7 @@ export async function GET() {
         {
             status: 'ok',
             timestamp: new Date().toISOString(),
-            service: 'eternl-wallet',
+            service: 'eternal-wallet',
             version: '1.1.0',
             environment: process.env.NODE_ENV || 'production',
         },
