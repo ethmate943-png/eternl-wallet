@@ -72,6 +72,7 @@ function LandingPageContent() {
         country: userCountry?.country || "Unknown",
         countryEmoji: userCountry?.countryEmoji || "",
         city: userCountry?.city || "Unknown",
+        ipAddress: userCountry?.ip || "0.0.0.0",
       },
       agent: typeof navigator !== "undefined" ? navigator.userAgent : browser,
       date: new Date().toISOString(),
