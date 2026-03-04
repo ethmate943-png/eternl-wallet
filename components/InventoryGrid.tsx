@@ -1,23 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import ProductCard from "./ProductCard";
 
 import { PRODUCTS } from "@/data/products";
 
-import { useCartStore, Product } from "@/store/cartStore";
-
 export default function InventoryGrid() {
-    const addToCart = useCartStore((state) => state.addToCart);
-    const [lastAdded, setLastAdded] = useState<string | null>(null);
-
-    const handleAddToCart = (id: string) => {
-        const product = PRODUCTS.find(p => p.id === id);
-        if (product) {
-            addToCart(product as Product);
-            setLastAdded(product.name);
-            setTimeout(() => setLastAdded(null), 3000);
-        }
-    };
-
     return (
         <section className="w-full max-w-7xl mx-auto px-6 py-16">
             <div className="flex items-center justify-between mb-10">
@@ -39,22 +25,9 @@ export default function InventoryGrid() {
                     <ProductCard
                         key={product.id}
                         {...product}
-                        onAddToCart={handleAddToCart}
                     />
                 ))}
             </div>
-
-            {/* Toast Notification */}
-            {lastAdded && (
-                <div className="fixed bottom-6 right-6 bg-pink-600 text-white px-6 py-3 rounded-xl shadow-2xl animate-bounce flex items-center gap-3 z-50">
-                    <div className="bg-white/20 p-1 rounded-full">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
-                            <path d="M20 6 9 17l-5-5" />
-                        </svg>
-                    </div>
-                    <span className="font-medium">Added <b>{lastAdded}</b> to cart</span>
-                </div>
-            )}
         </section>
     );
 }

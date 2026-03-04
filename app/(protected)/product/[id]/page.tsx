@@ -4,15 +4,12 @@ import { useParams } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 import { PRODUCTS } from "@/data/products";
-import { useCartStore, Product } from "@/store/cartStore";
-import { useState } from "react";
+
 
 export default function ProductPage() {
     const params = useParams();
     const id = params?.id as string;
     const product = PRODUCTS.find((p) => p.id === id);
-    const addToCart = useCartStore((state) => state.addToCart);
-    const [added, setAdded] = useState(false);
 
     if (!product) {
         return (
@@ -25,11 +22,7 @@ export default function ProductPage() {
         );
     }
 
-    const handleAddToCart = () => {
-        addToCart(product as Product);
-        setAdded(true);
-        setTimeout(() => setAdded(false), 2000);
-    };
+
 
     return (
         <div className="min-h-screen bg-[#0e0e0e] text-white py-24 px-6 md:px-12">
@@ -63,13 +56,9 @@ export default function ProductPage() {
 
                     <div className="flex gap-4">
                         <button
-                            onClick={handleAddToCart}
-                            className={`flex-1 py-4 rounded-full font-bold transition-all ${added
-                                ? "bg-green-500 text-white"
-                                : "bg-white text-black hover:scale-[1.02]"
-                                }`}
+                            className="flex-1 py-4 rounded-full font-bold transition-all bg-white/10 text-white cursor-not-allowed opacity-80"
                         >
-                            {added ? "Added to Cart! ✓" : "Add to Cart"}
+                            Pre-order
                         </button>
                     </div>
 

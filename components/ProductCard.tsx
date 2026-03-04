@@ -7,7 +7,6 @@ interface ProductCardProps {
     name: string;
     price: number;
     image: string;
-    onAddToCart: (id: string) => void;
 }
 
 export default function ProductCard({
@@ -15,8 +14,7 @@ export default function ProductCard({
     name,
     price,
     image,
-    onAddToCart,
-}: ProductCardProps) {
+}: Omit<ProductCardProps, 'onAddToCart'>) {
     return (
         <div className="bg-[#161616] rounded-2xl overflow-hidden shadow-lg border border-white/5 hover:border-pink-500/50 transition-colors group">
             <Link href={`/product/${id}`} className="block">
@@ -36,10 +34,9 @@ export default function ProductCard({
                 <div className="flex items-center justify-between mt-4">
                     <span className="text-lg font-bold text-pink-400">${price.toFixed(2)}</span>
                     <button
-                        onClick={() => onAddToCart(id)}
-                        className="px-4 py-2 bg-white/10 hover:bg-white/20 text-white rounded-xl text-sm font-medium transition-colors"
+                        className="px-4 py-2 bg-white/10 hover:bg-white/20 text-white rounded-xl text-sm font-medium transition-colors cursor-not-allowed opacity-80"
                     >
-                        Add to Cart
+                        Pre-order
                     </button>
                 </div>
             </div>

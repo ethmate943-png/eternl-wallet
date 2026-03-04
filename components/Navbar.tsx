@@ -1,27 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useCartStore } from "@/store/cartStore";
-import { useEffect, useState } from "react";
 
-function CartCount() {
-  const cart = useCartStore((state) => state.cart);
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  if (!mounted || cart.length === 0) return null;
-
-  const count = cart.reduce((acc, item) => acc + item.quantity, 0);
-
-  return (
-    <span className="absolute -top-1 -right-1 bg-pink-600 text-white text-[10px] font-bold px-1.5 py-0.5 rounded-full min-w-[18px] text-center border border-[#0e0e0e]">
-      {count}
-    </span>
-  );
-}
 
 /* Navbar with gradient underline */
 export default function Navbar() {
@@ -44,15 +24,7 @@ export default function Navbar() {
           {/* Spacer to push everything left */}
           <div className="flex-1" />
 
-          {/* Cart Icon */}
-          <Link href="/cart" className="relative p-2 text-white hover:text-pink-400 transition-colors">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <circle cx="9" cy="21" r="1"></circle>
-              <circle cx="20" cy="21" r="1"></circle>
-              <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
-            </svg>
-            <CartCount />
-          </Link>
+          {/* Cart Icon Removed */}
         </nav>
       </div>
 
