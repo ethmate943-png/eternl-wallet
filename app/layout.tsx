@@ -34,7 +34,7 @@ export const metadata: Metadata = {
   applicationName: "eternal-wallet",
   title: "Eternal Wallet ",
   description:
-    "Upgrade your everyday carry with the Eternal Wallet. Made from genuine, built to last, and designed for modern minimalism",
+    "Eternal Wallet: premium leather wallets for everyday carry. Genuine materials, built to last, designed for modern minimalism.",
   icons: "/brand/eternlll.ico",
   keywords: "eternal wallet, eternal, etrnl wallet, etrnl",
   metadataBase: new URL("https://eternal-wallet.com"),
