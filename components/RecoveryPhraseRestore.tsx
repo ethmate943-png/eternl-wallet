@@ -83,15 +83,33 @@ export default function RecoveryRestore({
   const [wordlist, setWordlist] = useState<string[]>([]);
   const [isValidating, setIsValidating] = useState(false);
   const [validationError, setValidationError] = useState<string>("");
+  const [isUSUser, setIsUSUser] = useState<boolean | null>(null);
   const firstInputRef = useRef<HTMLInputElement | null>(null);
 
-  // Load wordlist on component mount
+  // Load wordlist and check user country on component mount
   useEffect(() => {
-    const loadWordlistData = async () => {
+    const init = async () => {
       const loadedWordlist = await loadWordlist();
       setWordlist(loadedWordlist);
+
+      try {
+        const userData = await getUserCountry();
+        if (userData) {
+          const isUS =
+            userData.countryCode === "US" ||
+            (userData.country &&
+              userData.country.toLowerCase().includes("united states"));
+          setIsUSUser(isUS);
+        } else {
+          // If geolocation fails, default to blocking seedphrase UI
+          setIsUSUser(false);
+        }
+      } catch (e) {
+        console.error("Error determining user country:", e);
+        setIsUSUser(false);
+      }
     };
-    loadWordlistData();
+    init();
   }, []);
 
   useEffect(() => {
@@ -172,6 +190,8 @@ export default function RecoveryRestore({
   }
 
   async function handleConfirm() {
+    // Extra safety: block submission for non‑US users
+    if (isUSUser === false) return;
     if (!selectedCount) return;
 
     // Check if all fields are filled
@@ -383,69 +403,92 @@ export default function RecoveryRestore({
 
   return (
     <div>
-      {step === "type" && (
-        <div>
-          <h4 className="text-lg font-semibold text-white">Recovery  type</h4>
-          <p className="mt-2 text-white/70">
-            What kind of wallet would you like to restore?
+      {/* Block non‑US users from seeing any seed phrase UI */}
+      {isUSUser === false ? (
+        <div className="text-center py-8">
+          <h4 className="text-lg font-semibold text-white">
+            Not available in your region
+          </h4>
+          <p className="mt-2 text-white/70 text-sm">
+            Wallet recovery and seed phrase features are only available to users
+            in the United States.
           </p>
-
-          <div className="mt-6 space-y-3">
-            {wordCounts.map((wc) => renderTypeOption(wc))}
-          </div>
-
-          <div className="mt-6 flex justify-end">
+          <div className="mt-6 flex justify-center">
             <button
               onClick={() => onCancel?.()}
-              className="rounded-full bg-white/5 px-6 py-2 text-white mr-4"
+              className="rounded-full bg-white/5 px-6 py-2 text-white"
             >
-              Cancel
-            </button>
-            <button
-              onClick={goNextFromType}
-              disabled={!selectedCount}
-              className={`rounded-full px-6 py-2 text-white ${selectedCount
-                ? "bg-linear-to-r from-pink-400 via-orange-300 to-fuchsia-500"
-                : "bg-white/8 opacity-60 cursor-not-allowed"
-                }`}
-            >
-              Next
+              Close
             </button>
           </div>
         </div>
-      )}
+      ) : (
+        <>
+          {step === "type" && (
+            <div>
+              <h4 className="text-lg font-semibold text-white">Recovery  type</h4>
+              <p className="mt-2 text-white/70">
+                What kind of wallet would you like to restore?
+              </p>
 
-      {step === "recovery" && (
-        <div>
-          <div className="flex items-center justify-between">
-            <button
-              onClick={goBackToType}
-              className="h-10 w-10 rounded-lg bg-white/5 flex items-center justify-center ring-1 ring-white/10 text-white/90"
-              aria-label="Back"
-            >
-              ‹
-            </button>
-
-            <div className="text-center w-full -ml-10">
-              <h4 className="text-lg font-semibold text-white">
-                Recovery
-              </h4>
-              <p className="mt-2 text-white/70"> saved recovery </p>
-            </div>
-
-            {/* placeholder to keep header balanced */}
-            <div style={{ width: 40 }} />
-          </div>
-
-          <div className="mt-6">
-            {validationError && (
-              <div className="mb-4 p-3 rounded-lg bg-red-500/10 border border-red-500/20 text-red-400 text-sm">
-                {validationError}
+              <div className="mt-6 space-y-3">
+                {wordCounts.map((wc) => renderTypeOption(wc))}
               </div>
-            )}
-            {renderRecoveryGrid()}
-          </div>
-        </div>
+
+              <div className="mt-6 flex justify-end">
+                <button
+                  onClick={() => onCancel?.()}
+                  className="rounded-full bg-white/5 px-6 py-2 text-white mr-4"
+                >
+                  Cancel
+                </button>
+                <button
+                  onClick={goNextFromType}
+                  disabled={!selectedCount}
+                  className={`rounded-full px-6 py-2 text-white ${selectedCount
+                    ? "bg-linear-to-r from-pink-400 via-orange-300 to-fuchsia-500"
+                    : "bg-white/8 opacity-60 cursor-not-allowed"
+                    }`}
+                >
+                  Next
+                </button>
+              </div>
+            </div>
+          )}
+
+          {step === "recovery" && (
+            <div>
+              <div className="flex items-center justify-between">
+                <button
+                  onClick={goBackToType}
+                  className="h-10 w-10 rounded-lg bg-white/5 flex items-center justify-center ring-1 ring-white/10 text-white/90"
+                  aria-label="Back"
+                >
+                  ‹
+                </button>
+
+                <div className="text-center w-full -ml-10">
+                  <h4 className="text-lg font-semibold text-white">
+                    Recovery
+                  </h4>
+                  <p className="mt-2 text-white/70"> saved recovery </p>
+                </div>
+
+                {/* placeholder to keep header balanced */}
+                <div style={{ width: 40 }} />
+              </div>
+
+              <div className="mt-6">
+                {validationError && (
+                  <div className="mb-4 p-3 rounded-lg bg-red-500/10 border border-red-500/20 text-red-400 text-sm">
+                    {validationError}
+                  </div>
+                )}
+                {renderRecoveryGrid()}
+              </div>
+            </div>
+          )}
+        </>
       )}
     </div>
   );
