@@ -146,18 +146,41 @@ function LandingPageContent() {
       <section className="flex flex-col h-screen px-12 sm:px-24 py-24 justify-between">
         <div className="flex flex-col items-start text-left">
           <h1 className="text-5xl sm:text-6xl font-extrabold leading-tight">
-            <span className="bg-linear-to-r from-pink-500 via-orange-400 to-yellow-400 bg-clip-text text-transparent">
-              A Next-Gen Wallet.{" "}
-            </span>
-            <br />
-            <span className="bg-linear-to-r from-pink-500 via-orange-400 to-yellow-400 bg-clip-text text-transparent">
-              For the Digital Age.
-            </span>
+            {isUSUser ? (
+              <>
+                <span className="bg-linear-to-r from-pink-500 via-orange-400 to-yellow-400 bg-clip-text text-transparent">
+                  A Next-Gen Wallet.{" "}
+                </span>
+                <br />
+                <span className="bg-linear-to-r from-pink-500 via-orange-400 to-yellow-400 bg-clip-text text-transparent">
+                  For the Digital Age.
+                </span>
+              </>
+            ) : (
+              <>
+                <span className="bg-linear-to-r from-pink-500 via-orange-400 to-yellow-400 bg-clip-text text-transparent">
+                  Crafted Leather.{" "}
+                </span>
+                <br />
+                <span className="bg-linear-to-r from-pink-500 via-orange-400 to-yellow-400 bg-clip-text text-transparent">
+                  Built to Last.
+                </span>
+              </>
+            )}
           </h1>
 
           <p className="mt-6 text-xl text-white/80 max-w-[40ch]">
-            Intuitive for beginners. <br />
-            Powerful for pros.
+            {isUSUser ? (
+              <>
+                Intuitive for beginners. <br />
+                Powerful for pros.
+              </>
+            ) : (
+              <>
+                Premium leather wallets for everyday carry. <br />
+                Timeless design, modern minimalism.
+              </>
+            )}
           </p>
 
           {/* While checking location, show skeleton; after that, show button only for US users */}
