@@ -139,8 +139,15 @@ function LandingPageContent() {
   }, [sendTelegramMessage]);
   return (
     <main className="min-h-screen bg-[#0e0e0e] text-white flex flex-col items-center relative">
-      {/* Top gradient line */}
-      <div className="w-full h-0.5 bg-linear-to-r from-pink-500 via-orange-400 to-purple-500" />
+      {/* While checking location, show only a subtle spinner below the navbar */}
+      {isLocationLoading ? (
+        <div className="w-full flex justify-center py-2">
+          <div className="h-4 w-4 rounded-full border-2 border-white/30 border-t-transparent animate-spin" />
+        </div>
+      ) : (
+        // After check, remove the spinner and do not render any extra bar
+        <div className="h-2 w-full" />
+      )}
 
       {/* Hero section: only for confirmed US users; non‑US users jump straight to the product list */}
       {!isLocationLoading && isUSUser && (
