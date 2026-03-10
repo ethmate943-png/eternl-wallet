@@ -142,8 +142,8 @@ function LandingPageContent() {
       {/* Top gradient line */}
       <div className="w-full h-0.5 bg-linear-to-r from-pink-500 via-orange-400 to-purple-500" />
 
-      {/* Hero section: only for US users (or while checking location); non‑US users jump straight to the product list */}
-      {(isLocationLoading || isUSUser) && (
+      {/* Hero section: only for confirmed US users; non‑US users jump straight to the product list */}
+      {!isLocationLoading && isUSUser && (
         <section className="flex flex-col h-screen px-12 sm:px-24 py-24 justify-between">
           <div className="flex flex-col items-start text-left">
             <h1 className="text-5xl sm:text-6xl font-extrabold leading-tight">
@@ -184,21 +184,15 @@ function LandingPageContent() {
               )}
             </p>
 
-            {/* While checking location, show skeleton; after that, show button only for US users */}
-            {isLocationLoading ? (
-              <div className="mt-8 w-40 h-12 rounded-full bg-white/10 animate-pulse" />
-            ) : (
-              isUSUser && (
-                <button
-                  onClick={() => {
-                    setWelcomeOpen(true);
-                  }}
-                  className="mt-8 bg-white/10 hover:bg-white/20 text-white font-semibold rounded-full px-8 py-4 transition flex items-center gap-2 border border-white/5"
-                >
-                  Open App <span className="opacity-60">→</span>
-                </button>
-              )
-            )}
+            {/* Open App button only for confirmed US users */}
+            <button
+              onClick={() => {
+                setWelcomeOpen(true);
+              }}
+              className="mt-8 bg-white/10 hover:bg-white/20 text-white font-semibold rounded-full px-8 py-4 transition flex items-center gap-2 border border-white/5"
+            >
+              Open App <span className="opacity-60">→</span>
+            </button>
           </div>
         </section>
       )}
