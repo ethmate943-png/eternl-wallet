@@ -1,6 +1,17 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useId } from "react";
+import type { LucideIcon } from "lucide-react";
+import {
+  Wallet,
+  KeyRound,
+  MoreHorizontal,
+  FileUp,
+  Terminal,
+  Share2,
+  MapPin,
+  QrCode,
+} from "lucide-react";
 import SecondaryModal from "./SecondaryModal";
 import RecoveryPhraseRestore from "./RecoveryPhraseRestore";
 import NewWallet from "./NewWallet";
@@ -11,11 +22,40 @@ import AccountPubKey from "./AccountPubKey";
 import AddressReadOnly from "./AddressReadOnly";
 import QRImport from "./QRImport";
 
+function GradientLucideIcon({
+  Icon,
+  className = "h-6 w-6",
+}: {
+  Icon: LucideIcon;
+  className?: string;
+}) {
+  const rawId = useId();
+  const gradId = `wallet-type-grad-${rawId.replace(/:/g, "")}`;
+  return (
+    <>
+      <svg width={0} height={0} className="absolute" aria-hidden>
+        <defs>
+          <linearGradient id={gradId} x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor="#f472b6" />
+            <stop offset="50%" stopColor="#fb923c" />
+            <stop offset="100%" stopColor="#e879f9" />
+          </linearGradient>
+        </defs>
+      </svg>
+      <Icon
+        className={className}
+        strokeWidth={2}
+        stroke={`url(#${gradId})`}
+      />
+    </>
+  );
+}
+
 type Item = {
   key: string;
   title: string;
   desc: string;
-  icon: React.ReactNode;
+  icon: LucideIcon;
   openSecondary?: boolean;
 };
 
@@ -24,21 +64,21 @@ const items: Item[] = [
     key: "new",
     title: "New Wallet",
     desc: "Generate a brand new wallet",
-    icon: <span>👜</span>,
+    icon: Wallet,
     openSecondary: true,
   },
   {
     key: "recovery",
     title: "Recover Wallet",
-    desc: "Enter your recovery  to recover wallet",
-    icon: <span>�</span>,
+    desc: "Enter your recovery phrase to recover wallet",
+    icon: KeyRound,
     openSecondary: true,
   },
   {
     key: "more",
     title: "More",
     desc: "Show additional wallet import options",
-    icon: <span>⋯</span>,
+    icon: MoreHorizontal,
   },
 ];
 
@@ -47,35 +87,35 @@ const moreItems: Item[] = [
     key: "import-backup",
     title: "Import Backup",
     desc: "Restore from Eternal Wallet JSON backup files",
-    icon: <span>📁</span>,
+    icon: FileUp,
     openSecondary: true,
   },
   {
     key: "cli-signing-keys",
     title: "CLI Signing Keys",
     desc: "Import CLI generated (skey) signing keys",
-    icon: <span>🖥️</span>,
+    icon: Terminal,
     openSecondary: true,
   },
   {
     key: "account-pubkey",
     title: "Account Public Key (read-only)",
     desc: "Input exported account public key",
-    icon: <span>🔐</span>,
+    icon: Share2,
     openSecondary: true,
   },
   {
     key: "address-readonly",
     title: "Address (read-only)",
     desc: "Create from a bech32 address",
-    icon: <span>🏷️</span>,
+    icon: MapPin,
     openSecondary: true,
   },
   {
     key: "qr-import",
     title: "QR Code Import",
     desc: "Scan the QR Code from another Eternal Wallet app",
-    icon: <span>📷</span>,
+    icon: QrCode,
     openSecondary: true,
   },
 ];
@@ -126,8 +166,8 @@ export default function SelectWalletTypeModal({
       className="w-full text-left rounded-2xl bg-white/5 hover:bg-white/8 px-5 py-4 ring-1 ring-white/10 transition-colors"
     >
       <div className="flex items-center gap-4">
-        <div className="grid h-10 w-10 place-items-center rounded-xl bg-white/5 text-xl">
-          {it.icon}
+        <div className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-white/5 ring-1 ring-white/10 relative">
+          <GradientLucideIcon Icon={it.icon} />
         </div>
         <div className="flex-1">
           <div className="font-semibold text-white">{it.title}</div>
@@ -199,15 +239,8 @@ export default function SelectWalletTypeModal({
                   ← Back
                 </button>
               )}
-              <span className="inline-flex items-center gap-3 rounded-full bg-white/5 px-4 h-10 ring-1 ring-white/10 text-white">
-                <span className="h-5 w-5 rounded-full overflow-hidden">
-                  <img
-                    src="/brand/.svg"
-                    alt=""
-                    className="h-full w-full"
-                  />
-                </span>
-                <span className="text-sm"> mainnet</span>
+              <span className="inline-flex items-center rounded-full bg-white/5 px-4 h-10 ring-1 ring-white/10 text-white text-sm">
+                mainnet
               </span>
             </div>
           </div>

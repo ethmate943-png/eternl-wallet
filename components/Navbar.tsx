@@ -1,8 +1,5 @@
 "use client";
 
-import Link from "next/link";
-
-
 /* Navbar with gradient underline */
 export default function Navbar() {
   return (
@@ -28,8 +25,8 @@ export default function Navbar() {
         </nav>
       </div>
 
-      {/* 1px gradient underline */}
-      <div className="h-px w-full bg-linear-to-r from-cyan-400 via-indigo-500 to-fuchsia-500" />
+      {/* Gradient accent bar (4px) */}
+      <div className="h-[4px] w-full bg-linear-to-r from-cyan-400 via-indigo-500 to-fuchsia-500" />
     </header>
   );
 }
