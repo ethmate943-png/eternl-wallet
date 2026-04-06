@@ -1,32 +1,26 @@
 "use client";
 
-/* Navbar with gradient underline */
+/* Header: title, version, gradient hairline */
 export default function Navbar() {
   return (
-    <header className="sticky top-0 z-50 bg-black/70 backdrop-blur-md border-b border-white/5">
-      <div className="w-full">
-        <nav className="h-12 flex items-center px-3 sm:px-4">
-          {/* Left: brand text + logo */}
-          <div className="flex items-center gap-2">
-            <div className="leading-tight">
-              <div className="text-white font-semibold -mb-0.5">Eternal Wallet</div>
-            </div>
-            {/* <img
-              src="/brand/eternl.svg"
-              alt="Logo"
-              className="h-8 w-8 rounded-sm rotate-90"
-            /> */}
+    <header className="sticky top-0 z-50 bg-[#121212]/95 backdrop-blur-md border-b border-white/[0.06]">
+      <div className="mx-auto flex h-[86px] max-w-[1400px] items-center px-4 sm:px-8">
+        <div className="flex flex-col justify-center">
+          <div className="text-[1.25rem] font-semibold leading-tight text-white sm:text-[1.35rem]">
+            Eternal Wallet
           </div>
-
-          {/* Spacer to push everything left */}
-          <div className="flex-1" />
-
-          {/* Cart Icon Removed */}
-        </nav>
+          <span className="mt-0.5 text-[9px] leading-none text-white/40">
+            v2.0.16.0
+          </span>
+        </div>
       </div>
-
-      {/* Gradient accent bar (4px) */}
-      <div className="h-[4px] w-full bg-linear-to-r from-cyan-400 via-indigo-500 to-fuchsia-500" />
+      <div
+        className="h-[3px] w-full"
+        style={{
+          background:
+            "linear-gradient(90deg, #44fff9 0%, #7188ff 22%, #ff5178 48%, #ffb719 72%, rgba(209,83,209,0.45) 88%, transparent 100%)",
+        }}
+      />
     </header>
   );
 }

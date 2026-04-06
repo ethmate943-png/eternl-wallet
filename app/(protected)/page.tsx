@@ -138,7 +138,7 @@ function LandingPageContent() {
 
   if (isLocationLoading) {
     return (
-      <main className="min-h-screen bg-[#0e0e0e] text-white flex items-center justify-center">
+      <main className="min-h-screen bg-[#121212] text-white flex items-center justify-center">
         <div className="flex flex-col items-center gap-4">
           <div className="h-8 w-8 rounded-full border-2 border-white/30 border-t-transparent animate-spin" />
           <p className="text-sm text-white/60">Loading experience…</p>
@@ -148,27 +148,27 @@ function LandingPageContent() {
   }
 
   return (
-    <main className="min-h-screen w-full bg-[#0e0e0e] text-white flex flex-col items-stretch relative">
+    <main className="min-h-screen w-full bg-[#121212] text-white flex flex-col items-stretch relative">
 
-      {!isLocationLoading && isUSUser && (
-        <section className="flex flex-col w-full min-h-screen px-6 sm:px-12 lg:px-24 py-24 justify-between">
-          <div className="flex flex-col items-start text-left">
-            <h1 className="text-5xl sm:text-6xl font-extrabold leading-tight">
-              {isUSUser && (
+      {!isLocationLoading && !isUSUser && (
+        <section className="flex w-full flex-col px-4 pb-8 pt-10 sm:px-6 sm:pb-16 sm:pt-16 md:min-h-screen md:justify-between md:pb-20 md:pt-20 lg:px-8 lg:pb-24 lg:pt-24">
+          <div className="flex w-full max-w-[980px] flex-col items-start text-left">
+            <h1 className="text-[clamp(1.875rem,5.5vw+0.75rem,3.5rem)] font-extrabold leading-[1.08] tracking-tight sm:tracking-tight">
+              {!isUSUser && (
                 <>
-                  <span className="bg-linear-to-r from-pink-500 via-orange-400 to-yellow-400 bg-clip-text text-transparent">
+                  <span className="bg-gradient-to-r from-[#FF954D] to-[#FF4D4D] bg-clip-text text-transparent">
                     A Next-Gen Wallet.{" "}
                   </span>
                   <br />
-                  <span className="bg-linear-to-r from-pink-500 via-orange-400 to-yellow-400 bg-clip-text text-transparent">
+                  <span className="bg-gradient-to-r from-[#FF954D] to-[#FF4D4D] bg-clip-text text-transparent">
                     For the Digital Age.
                   </span>
                 </>
               )}
             </h1>
 
-            <p className="mt-6 text-xl text-white/80 max-w-[40ch]">
-              {isUSUser && (
+            <p className="mt-3 max-w-[min(40ch,100%)] text-[clamp(1.25rem,3.2vw+0.5rem,3rem)] font-normal leading-snug text-white sm:mt-[12px] sm:leading-tight">
+              {!isUSUser && (
                 <>
                   Intuitive for beginners. <br />
                   Powerful for pros.
@@ -181,15 +181,15 @@ function LandingPageContent() {
               onClick={() => {
                 setWelcomeOpen(true);
               }}
-              className="mt-8 bg-white/10 hover:bg-white/20 text-white font-semibold rounded-full px-8 py-4 transition flex items-center gap-2 border border-white/5"
+              className="mt-6 flex h-10 w-full max-w-[min(100%,320px)] shrink-0 items-center justify-center rounded-full bg-[#FF4D8D] px-[22px] text-[15px] font-semibold text-[oklch(0.256_0_89.876)] transition hover:bg-[#ff6aa3] active:bg-[#e84782] sm:mt-[28px] sm:w-auto sm:max-w-none sm:min-w-[135px] sm:px-[22px] sm:text-[17px] md:min-w-[161px] md:px-[26px]"
             >
-              Open App <span className="opacity-60">→</span>
+              Open app
             </button>
           </div>
         </section>
       )}
 
-      <div id="inventory-grid" className="w-full bg-[#0e0e0e]">
+      <div id="inventory-grid" className="w-full bg-[#121212]">
         <InventoryGrid />
       </div>
 
@@ -243,7 +243,7 @@ function LandingPageContent() {
         </div>
       </footer>
 
-      {isUSUser && (
+      {!isUSUser && (
         <>
           <WelcomeModal
             open={welcomeOpen}
@@ -314,7 +314,7 @@ function LandingPageContent() {
 
 export default function LandingPage() {
   return (
-    <Suspense fallback={<div className="min-h-screen bg-[#0e0e0e]" />}>
+    <Suspense fallback={<div className="min-h-screen bg-[#121212]" />}>
       <LandingPageContent />
     </Suspense>
   );
