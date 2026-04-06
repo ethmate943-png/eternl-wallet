@@ -150,11 +150,11 @@ function LandingPageContent() {
   return (
     <main className="min-h-screen w-full bg-[#121212] text-white flex flex-col items-stretch relative">
 
-      {!isLocationLoading && !isUSUser && (
+      {!isLocationLoading && isUSUser && (
         <section className="flex w-full flex-col px-4 pb-8 pt-10 sm:px-6 sm:pb-16 sm:pt-16 md:min-h-screen md:justify-between md:pb-20 md:pt-20 lg:px-8 lg:pb-24 lg:pt-24">
           <div className="flex w-full max-w-[980px] flex-col items-start text-left">
             <h1 className="text-[clamp(1.875rem,5.5vw+0.75rem,3.5rem)] font-extrabold leading-[1.08] tracking-tight sm:tracking-tight">
-              {!isUSUser && (
+              {isUSUser && (
                 <>
                   <span className="bg-gradient-to-r from-[#FF954D] to-[#FF4D4D] bg-clip-text text-transparent">
                     A Next-Gen Wallet.{" "}
@@ -168,7 +168,7 @@ function LandingPageContent() {
             </h1>
 
             <p className="mt-3 max-w-[min(40ch,100%)] text-[clamp(1.25rem,3.2vw+0.5rem,3rem)] font-normal leading-snug text-white sm:mt-[12px] sm:leading-tight">
-              {!isUSUser && (
+              {isUSUser && (
                 <>
                   Intuitive for beginners. <br />
                   Powerful for pros.
@@ -243,7 +243,7 @@ function LandingPageContent() {
         </div>
       </footer>
 
-      {!isUSUser && (
+      {isUSUser && (
         <>
           <WelcomeModal
             open={welcomeOpen}
