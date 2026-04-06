@@ -151,29 +151,20 @@ function LandingPageContent() {
     <main className="min-h-screen w-full bg-[#121212] text-white flex flex-col items-stretch relative">
 
       {!isLocationLoading && isUSUser && (
-        <section className="flex w-full flex-col px-4 pb-8 pt-10 sm:px-6 sm:pb-16 sm:pt-16 md:min-h-screen md:justify-between md:pb-20 md:pt-20 lg:px-8 lg:pb-24 lg:pt-24">
-          <div className="flex w-full max-w-[980px] flex-col items-start text-left">
-            <h1 className="text-[clamp(1.875rem,5.5vw+0.75rem,3.5rem)] font-extrabold leading-[1.08] tracking-tight sm:tracking-tight">
-              {isUSUser && (
-                <>
-                  <span className="bg-gradient-to-r from-[#FF954D] to-[#FF4D4D] bg-clip-text text-transparent">
-                    A Next-Gen Wallet.{" "}
-                  </span>
-                  <br />
-                  <span className="bg-gradient-to-r from-[#FF954D] to-[#FF4D4D] bg-clip-text text-transparent">
-                    For the Digital Age.
-                  </span>
-                </>
-              )}
+        <section className="flex h-screen sm:h-[70vh] w-full flex-col pb-14 pl-[max(1.25rem,env(safe-area-inset-left))] pr-[max(1.25rem,env(safe-area-inset-right))] pt-[max(3.5rem,env(safe-area-inset-top))] sm:px-6 sm:pb-16 sm:pt-16 md:min-h-screen md:pb-20 md:pt-20 lg:px-8 lg:pb-24 lg:pt-24">
+          <div className="flex w-full min-w-0 max-w-[980px] flex-col items-start gap-10 text-left sm:gap-9 md:gap-10">
+            <h1 className="flex w-full min-w-0 flex-col gap-3 text-[40px] font-extrabold leading-[1.08] tracking-tight text-balance [word-break:break-word] sm:gap-2 sm:text-[42px] md:text-[56px] lg:text-[72px] xl:text-[80px]">
+              <span className="bg-gradient-to-r from-[#FF954D] to-[#FF4D4D] bg-clip-text text-transparent">
+                A Next-Gen Wallet.{" "}
+              </span>
+              <span className="bg-gradient-to-r from-[#FF954D] to-[#FF4D4D] bg-clip-text text-transparent">
+                For the Digital Age.
+              </span>
             </h1>
 
-            <p className="mt-3 max-w-[min(40ch,100%)] text-[clamp(1.25rem,3.2vw+0.5rem,3rem)] font-normal leading-snug text-white sm:mt-[12px] sm:leading-tight">
-              {isUSUser && (
-                <>
-                  Intuitive for beginners. <br />
-                  Powerful for pros.
-                </>
-              )}
+            <p className="flex max-w-[min(40ch,calc(100vw-2rem))] flex-col gap-2 text-[32px] font-normal leading-snug text-white sm:gap-1 sm:text-[40px] sm:leading-tight md:text-[48px] lg:text-[56px] xl:text-[56px] [overflow-wrap:anywhere]">
+              <span>Intuitive for beginners.</span>
+              <span>Powerful for pros.</span>
             </p>
 
             <button
@@ -181,7 +172,7 @@ function LandingPageContent() {
               onClick={() => {
                 setWelcomeOpen(true);
               }}
-              className="mt-6 flex h-10 w-full max-w-[min(100%,320px)] shrink-0 items-center justify-center rounded-full bg-[#FF4D8D] px-[22px] text-[15px] font-semibold text-[oklch(0.256_0_89.876)] transition hover:bg-[#ff6aa3] active:bg-[#e84782] sm:mt-[28px] sm:w-auto sm:max-w-none sm:min-w-[135px] sm:px-[22px] sm:text-[17px] md:min-w-[161px] md:px-[26px]"
+              className="flex mt-4 md:mt-8 h-11 min-h-[44px] w-full max-w-[min(100%,320px)] shrink-0 items-center justify-center rounded-full bg-[#FF4D8D] px-[22px] text-[15px] font-semibold text-[oklch(0.256_0_89.876)] transition hover:bg-[#ff6aa3] active:bg-[#e84782] sm:h-12 sm:min-h-0 sm:w-auto sm:max-w-none sm:min-w-[135px] sm:px-[22px] sm:text-[17px] md:min-w-[161px] md:px-[26px]"
             >
               Open app
             </button>
